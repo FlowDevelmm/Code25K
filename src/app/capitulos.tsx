@@ -2,7 +2,7 @@
 import React from "react";
 import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { Link, useLocalSearchParams, Stack } from "expo-router";
-import { codigoCivil } from "./data";
+import { codigoCivil } from "../data";
 
 export default function CapitulosScreen() {
   const { livroIndex, tituloIndex } = useLocalSearchParams<{ livroIndex: string; tituloIndex: string }>();
