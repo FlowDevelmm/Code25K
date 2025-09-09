@@ -23,22 +23,19 @@ const getStyles = (colors) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    padding: normalize(20),
+    paddingHorizontal: normalize(20),
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: normalize(15),
-    marginTop: normalize(40),
-  },
-  headerTextWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
+    paddingTop: normalize(60),
+    paddingBottom: normalize(20),
   },
   headerText: {
-    fontWeight: "bold",
-    fontSize: normalize(28),
+    fontSize: normalize(34),
+    fontWeight: 'bold',
+    color: colors.text,
     fontFamily: 'Inter-Bold',
   },
   themeToggleButton: {
@@ -47,9 +44,7 @@ const getStyles = (colors) => StyleSheet.create({
   searchBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: normalize(50),
-    borderColor: colors.border,
-    borderWidth: 1,
+    height: normalize(40),
     borderRadius: 10,
     paddingHorizontal: normalize(10),
     marginBottom: normalize(20),
@@ -61,12 +56,12 @@ const getStyles = (colors) => StyleSheet.create({
   searchBar: {
     flex: 1,
     height: '100%',
-    fontSize: normalize(16),
+    fontSize: normalize(17),
     color: colors.text,
+    fontFamily: 'Inter-Regular',
   },
   partsContainer: {
     flex: 1,
-    marginTop: normalize(30),
   },
   partRow: {
     flexDirection: "row",
@@ -75,49 +70,50 @@ const getStyles = (colors) => StyleSheet.create({
   },
   partBox: {
     width: "48%",
-    height: normalize(140),
-    borderRadius: 10,
-    paddingVertical: normalize(20),
-    alignItems: "center",
-    justifyContent: "center",
-    elevation: 4,
+    height: normalize(120),
+    borderRadius: 15,
+    padding: normalize(15),
+    alignItems: "flex-start",
+    justifyContent: "space-between",
     backgroundColor: colors.card,
-    borderWidth: 1,
-    borderColor: colors.border,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   partIcon: {
     marginBottom: normalize(10),
   },
   partTitle: {
-    fontSize: normalize(16),
-    fontWeight: "bold",
+    fontSize: normalize(17),
+    fontWeight: "600",
     color: colors.text,
-    textAlign: "center",
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'Inter-SemiBold',
   },
   carouselContainer: {
-    marginBottom: normalize(10),
+    marginBottom: normalize(20),
   },
   carouselTitle: {
-    fontSize: normalize(18),
+    fontSize: normalize(22),
     fontWeight: "bold",
-    color: colors.primary,
-    marginBottom: normalize(5),
-    textAlign: "left",
+    color: colors.text,
+    marginBottom: normalize(10),
     fontFamily: 'Inter-Bold',
   },
   carouselItem: {
     backgroundColor: colors.card,
     padding: normalize(20),
-    borderRadius: 10,
+    borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
-    minHeight: normalize(70),
-    borderWidth: 1,
-    borderColor: colors.border,
+    minHeight: normalize(100),
   },
   carouselText: {
-    fontSize: normalize(16),
+    fontSize: normalize(17),
     color: colors.text,
     textAlign: "center",
     fontFamily: 'Inter-Regular',
@@ -125,47 +121,48 @@ const getStyles = (colors) => StyleSheet.create({
   dotsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: normalize(10),
+    marginTop: normalize(15),
   },
   dot: {
     width: normalize(8),
     height: normalize(8),
     borderRadius: normalize(4),
-    backgroundColor: '#ccc',
+    backgroundColor: colors.border,
     marginHorizontal: normalize(4),
   },
   activeDot: {
     backgroundColor: colors.primary,
   },
   footer: {
-    paddingVertical: normalize(10),
-    borderTopWidth: 1,
-    borderTopColor: colors.border,
+    paddingVertical: normalize(20),
     alignItems: "center",
-    marginTop: normalize(10),
   },
   footerText: {
     fontSize: normalize(12),
     color: colors.text,
+    opacity: 0.6,
     fontFamily: 'Inter-Regular',
   },
   resultsContainer: {
     flex: 1,
   },
   resultItem: {
-    padding: normalize(15),
+    paddingVertical: normalize(15),
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
   },
   resultTitle: {
-    fontSize: normalize(16),
-    fontWeight: 'bold',
+    fontSize: normalize(17),
+    fontWeight: '600',
     color: colors.text,
+    fontFamily: 'Inter-SemiBold',
   },
   resultPath: {
-    fontSize: normalize(12),
+    fontSize: normalize(13),
     color: colors.text,
-    opacity: 0.7,
+    opacity: 0.6,
+    marginTop: normalize(4),
+    fontFamily: 'Inter-Regular',
   },
 });
 
@@ -180,6 +177,7 @@ export default function MainScreen() {
   const [fontsLoaded, fontError] = useFonts({
     'Inter-Regular': require("../../assets/fonts/Inter_18pt-Regular.ttf"),
     'Inter-Bold': require("../../assets/fonts/Inter_18pt-Bold.ttf"),
+    'Inter-SemiBold': require("../../assets/fonts/Inter_18pt-SemiBold.ttf"),
   });
 
   useEffect(() => {
@@ -274,6 +272,7 @@ export default function MainScreen() {
     return (
       <ScrollView 
         style={{ flex: 1 }}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
         keyboardShouldPersistTaps="handled"
       >
@@ -281,13 +280,13 @@ export default function MainScreen() {
           <View style={styles.partRow}>
             <Link href="/livros" asChild>
               <TouchableOpacity style={styles.partBox}>
-                <MaterialIcons name="book" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
+                <MaterialIcons name="book" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
                 <Text style={styles.partTitle}>Código Civil</Text>
               </TouchableOpacity>
             </Link>
             <Link href="/anotacoes" asChild>
               <TouchableOpacity style={styles.partBox}>
-                <MaterialIcons name="edit" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
+                <MaterialIcons name="edit" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
                 <Text style={styles.partTitle}>Anotações</Text>
               </TouchableOpacity>
             </Link>
@@ -295,12 +294,12 @@ export default function MainScreen() {
           <View style={styles.partRow}>
             <Link href="/favoritos" asChild>
               <TouchableOpacity style={styles.partBox}>
-                <MaterialIcons name="star" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
+                <MaterialIcons name="star" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
                 <Text style={styles.partTitle}>Favoritos</Text>
               </TouchableOpacity>
             </Link>
             <TouchableOpacity style={styles.partBox} onPress={() => setModalVisible(true)}>
-              <MaterialIcons name="add" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
+              <MaterialIcons name="add" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
               <Text style={styles.partTitle}>Mais</Text>
             </TouchableOpacity>
           </View>
@@ -333,15 +332,15 @@ export default function MainScreen() {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <View style={styles.headerTextWrapper}>
+          <View style={{flexDirection: 'row'}}>
             <Text style={[styles.headerText, { color: colors.primary }]}>Código </Text>
-            <Text style={[styles.headerText, { color: colors.text }]}>Civil</Text>
+            <Text style={styles.headerText}>Civil</Text>
           </View>
           <TouchableOpacity onPress={toggleTheme} style={styles.themeToggleButton}>
             <MaterialIcons 
               name={isDarkMode ? 'wb-sunny' : 'brightness-3'} 
               size={normalize(24)} 
-              color={colors.primary} 
+              color={colors.text} 
             />
           </TouchableOpacity>
         </View>

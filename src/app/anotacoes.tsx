@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,27 +8,27 @@ import {
   Alert,
   BackHandler,
   useWindowDimensions,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect, Stack } from 'expo-router';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { RichEditor, RichToolbar, actions } from 'react-native-pell-rich-editor';
 import RenderHTML from 'react-native-render-html';
+import { useTheme } from '../ThemeContext';
 
 interface Note {
   id: string;
-  text: string; // Agora o texto será HTML
+  text: string;
 }
 
 export default function AnotacoesScreen() {
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
+  const { width } = useWindowDimensions();
   const [notes, setNotes] = useState<Note[]>([]);
   const [isWriting, setIsWriting] = useState(false);
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
-  const router = useRouter();
-  const { width } = useWindowDimensions();
-
-  // Ref para o editor de rich text
   const richText = useRef<any>();
 
   useFocusEffect(
@@ -99,86 +100,81 @@ export default function AnotacoesScreen() {
   const handleStartEditing = (note: Note) => {
     setIsWriting(true);
     setEditingNoteId(note.id);
-    // O conteúdo será passado para o RichEditor via initialContentHTML
   };
 
   const renderHiddenItem = (data, rowMap) => (
     <View style={styles.rowBack}>
-        <TouchableOpacity
-            style={[styles.backBtn, styles.backLeftBtn]}
-            onPress={() => handleStartEditing(data.item)}
-        >
-            <Text style={styles.backTextWhite}>Editar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={[styles.backBtn, styles.backRightBtn]}
-            onPress={() => handleDeleteNote(data.item.id)}
-        >
-            <Text style={styles.backTextWhite}>Apagar</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.backBtn, styles.backLeftBtn]}
+        onPress={() => handleStartEditing(data.item)}
+      >
+        <Text style={styles.backTextWhite}>Editar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.backBtn, styles.backRightBtn]}
+        onPress={() => handleDeleteNote(data.item.id)}
+      >
+        <Text style={styles.backTextWhite}>Apagar</Text>
+      </TouchableOpacity>
     </View>
   );
 
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: isWriting ? (editingNoteId ? 'Editar Anotação' : 'Nova Anotação') : 'Anotações' }} />
       {isWriting ? (
-        // --- MODO DE ESCRITA / EDIÇÃO ---
         <>
-            <RichToolbar
-                editor={richText}
-                actions={[
-                    actions.setBold,
-                    actions.setItalic,
-                    actions.setUnderline,
-                    actions.setStrikethrough,
-                    actions.insertH1,
-                    actions.insertH2,
-                    actions.insertH3,
-                    actions.insertBulletsList,
-                    actions.insertOrderedList,
-                 ]}
-                style={styles.richToolbar}
+          <RichToolbar
+            editor={richText}
+            actions={[
+              actions.setBold,
+              actions.setItalic,
+              actions.setUnderline,
+              actions.insertBulletsList,
+              actions.insertOrderedList,
+            ]}
+            style={styles.richToolbar}
+            iconTint={colors.text}
+            selectedIconTint={colors.primary}
+          />
+          <ScrollView style={styles.editorContainer}>
+            <RichEditor
+              ref={richText}
+              style={styles.richEditor}
+              placeholder={"Comece a escrever aqui..."}
+              initialContentHTML={editingNoteId ? notes.find(n => n.id === editingNoteId)?.text : ''}
+              editorStyle={{
+                backgroundColor: colors.card,
+                color: colors.text,
+                placeholderColor: colors.text,
+              }}
             />
-            <ScrollView style={styles.editorContainer}>
-                <RichEditor
-                    ref={richText}
-                    style={styles.richEditor}
-                    placeholder={"Comece a escrever aqui..."}
-                    initialContentHTML={editingNoteId ? notes.find(n => n.id === editingNoteId)?.text : ''}
-                    editorStyle={{
-                        backgroundColor: '#f9f9f9',
-                        placeholderColor: '#999'
-                    }}
-                />
-            </ScrollView>
-            <TouchableOpacity style={[styles.button, styles.saveButton]} onPress={handleSaveNote}>
-              <Text style={styles.buttonText}>Salvar</Text>
-            </TouchableOpacity>
+          </ScrollView>
+          <TouchableOpacity style={styles.saveButton} onPress={handleSaveNote}>
+            <Text style={styles.buttonText}>Salvar</Text>
+          </TouchableOpacity>
         </>
       ) : (
-        // --- MODO DE LISTA ---
         <>
           <SwipeListView
             data={notes}
             renderItem={(data, rowMap) => (
-                <TouchableOpacity onPress={() => handleStartEditing(data.item)} activeOpacity={0.7}>
-                    <View style={styles.notaBox}>
-                        <RenderHTML
-                            contentWidth={width}
-                            source={{ html: data.item.text }}
-                        />
-                    </View>
-                </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleStartEditing(data.item)} activeOpacity={0.7}>
+                <View style={styles.notaBox}>
+                  <RenderHTML
+                    contentWidth={width}
+                    source={{ html: data.item.text }}
+                    baseStyle={{ color: colors.text }}
+                  />
+                </View>
+              </TouchableOpacity>
             )}
             renderHiddenItem={renderHiddenItem}
             leftOpenValue={75}
             rightOpenValue={-75}
             keyExtractor={(item) => item.id}
-            style={styles.list}
-            contentContainerStyle={{ paddingBottom: 80 }}
-            ListEmptyComponent={<Text style={styles.semNotas}>Nenhuma anotação ainda.</Text>}
+            ListEmptyComponent={<Text style={styles.emptyText}>Nenhuma anotação ainda.</Text>}
           />
-
           <TouchableOpacity style={styles.fab} onPress={() => {
             setIsWriting(true);
             setEditingNoteId(null);
@@ -191,94 +187,91 @@ export default function AnotacoesScreen() {
   );
 }
 
-// --- ESTILOS ---
-
-  const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f0f0f0',
-    },
-    rowBack: {
-        alignItems: 'center',
-        backgroundColor: '#DDD',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: 15,
-    },
-    backBtn: {
-        alignItems: 'center',
-        bottom: 0,
-        justifyContent: 'center',
-        position: 'absolute',
-        top: 0,
-        width: 75,
-    },
-    backLeftBtn: {
-        backgroundColor: 'blue',
-        left: 0,
-    },
-    backRightBtn: {
-        backgroundColor: 'red',
-        right: 0,
-    },
-    backTextWhite: {
-        color: '#FFF',
-    },
-    richToolbar: {
-        backgroundColor: '#f9f9f9',
-        borderBottomWidth: 1,
-        borderBottomColor: '#e0e0e0',
-    },
-    editorContainer: {
-        flex: 1,
-    },
-    richEditor: {
-        minHeight: 200,
-    },
-    button: {
-        backgroundColor: '#007BFF',
-        padding: 15,
-        borderRadius: 5,
-        alignItems: 'center',
-        margin: 10,
-    },
-    saveButton: {
-        backgroundColor: '#28a745',
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    notaBox: {
-        backgroundColor: 'white',
-        padding: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: '#e0e0e0',
-    },
-    list: {
-        flex: 1,
-    },
-    semNotas: {
-        textAlign: 'center',
-        marginTop: 50,
-        fontSize: 16,
-        color: '#999',
-    },
-    fab: {
-        position: 'absolute',
-        width: 56,
-        height: 56,
-        alignItems: 'center',
-        justifyContent: 'center',
-        right: 20,
-        bottom: 20,
-        backgroundColor: '#007BFF',
-        borderRadius: 28,
-        elevation: 8,
-    },
-    fabIcon: {
-        fontSize: 24,
-        color: 'white',
-    },
+const getStyles = (colors) => StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: colors.background,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  backBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 75,
+  },
+  backLeftBtn: {
+    backgroundColor: colors.primary,
+    left: 0,
+  },
+  backRightBtn: {
+    backgroundColor: '#ff4d4d',
+    right: 0,
+  },
+  backTextWhite: {
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+  richToolbar: {
+    backgroundColor: colors.card,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  editorContainer: {
+    flex: 1,
+  },
+  richEditor: {
+    flex: 1,
+  },
+  saveButton: {
+    backgroundColor: colors.primary,
+    padding: 15,
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  notaBox: {
+    backgroundColor: colors.card,
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 50,
+    fontSize: 16,
+    color: colors.text,
+  },
+  fab: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 20,
+    bottom: 20,
+    backgroundColor: colors.primary,
+    borderRadius: 28,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  fabIcon: {
+    fontSize: 24,
+    color: 'white',
+  },
 });

@@ -1,24 +1,20 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  Alert,
-  BackHandler,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect, Stack } from 'expo-router';
 import { SwipeListView } from 'react-native-swipe-list-view';
-
-interface Favorite {
-  id: string;
-  text: string; // Agora o texto será HTML
-}
+import { useTheme } from '../ThemeContext';
 
 export default function FavoritosScreen() {
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -28,7 +24,7 @@ export default function FavoritosScreen() {
 
   const loadFavorites = async () => {
     try {
-      const savedFavorites = await AsyncStorage.getItem('favoritedArticles'); // Changed key
+      const savedFavorites = await AsyncStorage.getItem('favoritedArticles');
       if (savedFavorites !== null) {
         setFavorites(JSON.parse(savedFavorites));
       }
@@ -41,7 +37,7 @@ export default function FavoritosScreen() {
     try {
       const newFavorites = favorites.filter((name) => name !== articleName);
       setFavorites(newFavorites);
-      await AsyncStorage.setItem('favoritedArticles', JSON.stringify(newFavorites)); // Changed key
+      await AsyncStorage.setItem('favoritedArticles', JSON.stringify(newFavorites));
     } catch (error) {
       console.error('Failed to delete favorite.', error);
     }
@@ -49,85 +45,64 @@ export default function FavoritosScreen() {
 
   const renderHiddenItem = (data, rowMap) => (
     <View style={styles.rowBack}>
-        <TouchableOpacity
-            style={[styles.backBtn, styles.backLeftBtn]}
-            onPress={() => handleDeleteFavorite(data.item)}
-        >
-            <Text style={styles.backTextWhite}>Apagar</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.backRightBtn, styles.backRightBtnRight]}
+        onPress={() => handleDeleteFavorite(data.item)}
+      >
+        <Text style={styles.backTextWhite}>Apagar</Text>
+      </TouchableOpacity>
     </View>
   );
 
   return (
     <View style={styles.container}>
-        <SwipeListView
-            data={favorites}
-            renderItem={({ item }) => (
-                <View style={styles.favoriteBox}>
-                    <Text style={styles.favoriteText}>{item}</Text>
-                </View>
-            )}
-            renderHiddenItem={renderHiddenItem}
-            leftOpenValue={75}
-            rightOpenValue={-75}
-            keyExtractor={(item) => item}
-            style={styles.list}
-            contentContainerStyle={{ paddingBottom: 80 }}
-            ListEmptyComponent={<Text style={styles.semFavorites}>Nenhum favorito ainda.</Text>}
-          />
+      <Stack.Screen options={{ title: 'Favoritos' }} />
+      <SwipeListView
+        data={favorites}
+        renderItem={({ item }) => (
+          <View style={styles.favoriteBox}>
+            <Text style={styles.favoriteText}>{item}</Text>
+          </View>
+        )}
+        renderHiddenItem={renderHiddenItem}
+        rightOpenValue={-75}
+        keyExtractor={(item) => item}
+        ListEmptyComponent={<Text style={styles.emptyText}>Nenhum favorito ainda.</Text>}
+      />
     </View>
   );
 }
 
-// --- ESTILOS ---
-
-const styles = StyleSheet.create({
+const getStyles = (colors) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
+    backgroundColor: colors.background,
   },
-  
-  // --- Estilos do Modo de Lista ---
-  list: {
-    flex: 1,
-  },
-  semFavorites: {
+  emptyText: {
     textAlign: 'center',
-    color: '#888',
-    fontSize: 16,
     marginTop: 40,
+    fontSize: 16,
+    color: colors.text,
   },
   favoriteBox: {
-    backgroundColor: 'white',
-    padding: 20, // Aumentado para dar mais espaço
-    marginBottom: 15,
-    borderRadius: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
+    backgroundColor: colors.card,
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
   },
   favoriteText: {
     fontSize: 16,
-    color: '#333',
-    flex: 1,
+    color: colors.text,
   },
   rowBack: {
     alignItems: 'center',
-    backgroundColor: '#DDD',
+    backgroundColor: '#ff4d4d',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 0,
-    marginBottom: 15,
-    borderRadius: 8,
+    justifyContent: 'flex-end',
+    paddingLeft: 15,
   },
-  backBtn: {
+  backRightBtn: {
     alignItems: 'center',
     bottom: 0,
     justifyContent: 'center',
@@ -135,17 +110,9 @@ const styles = StyleSheet.create({
     top: 0,
     width: 75,
   },
-  backLeftBtn: {
-    backgroundColor: '#00bfff',
-    left: 0,
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-  },
-  backRightBtn: {
+  backRightBtnRight: {
     backgroundColor: '#ff4d4d',
     right: 0,
-    borderTopRightRadius: 8,
-    borderBottomRightRadius: 8,
   },
   backTextWhite: {
     color: '#FFF',

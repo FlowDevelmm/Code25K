@@ -1,9 +1,14 @@
-import React from "react";
-import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
-import { Link, useLocalSearchParams, Stack } from "expo-router";
-import { codigoCivil } from "../data";
+
+import React from 'react';
+import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Link, useLocalSearchParams, Stack } from 'expo-router';
+import { useTheme } from '../ThemeContext';
+import { codigoCivil } from '../data';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function CapitulosScreen() {
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
   const { livroIndex, tituloIndex } = useLocalSearchParams<{ livroIndex: string; tituloIndex: string }>();
   const livro = codigoCivil[parseInt(livroIndex)];
   const titulo = livro?.titulos[parseInt(tituloIndex)];
@@ -11,7 +16,7 @@ export default function CapitulosScreen() {
   if (!titulo) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Título não encontrado.</Text>
+        <Text style={styles.errorText}>Título não encontrado.</Text>
       </SafeAreaView>
     );
   }
@@ -23,31 +28,45 @@ export default function CapitulosScreen() {
         data={titulo.capitulos}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index: capituloIndex }) => (
-          <Link href={{ pathname: "/artigos", params: { livroIndex, tituloIndex, capituloIndex } }} asChild>
-            <TouchableOpacity>
-              <View style={styles.itemContainer}>
-                <Text style={styles.itemText}>{item.nome}</Text>
-              </View>
+          <Link href={{ pathname: '/artigos', params: { livroIndex, tituloIndex, capituloIndex } }} asChild>
+            <TouchableOpacity style={styles.itemContainer}>
+              <Text style={styles.itemText}>{item.nome}</Text>
+              <MaterialIcons name="chevron-right" size={24} color={colors.text} />
             </TouchableOpacity>
           </Link>
         )}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
   itemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
+    backgroundColor: colors.card,
   },
   itemText: {
     fontSize: 18,
-    color: "#000",
+    color: colors.text,
+    fontFamily: 'Inter-Regular',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: colors.border,
+    marginLeft: 16,
+  },
+  errorText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 18,
+    color: colors.text,
   },
 });
