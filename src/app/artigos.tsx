@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, View, FlatList, StyleSheet, Switch, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useLocalSearchParams, Stack } from "expo-router";
@@ -169,5 +168,4 @@ const getStyles = (theme) => {
     padding: 5,
   },
 });
-}; // Closing brace for getStyles function
-// End of styles
+};

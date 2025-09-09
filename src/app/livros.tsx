@@ -1,12 +1,12 @@
-
 import React from "react";
 import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
-import { Link } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { codigoCivil } from "../data";
 
 export default function LivrosScreen() {
   return (
     <SafeAreaView style={styles.container}>
+      <Stack.Screen options={{ title: "Livros" }} />
       <FlatList
         data={codigoCivil}
         keyExtractor={(item, index) => index.toString()}
@@ -36,5 +36,6 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 18,
+    color: "#000",
   },
 });

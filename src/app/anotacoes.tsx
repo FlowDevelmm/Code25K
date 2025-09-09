@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import {
   View,
   Text,
@@ -125,16 +125,16 @@ export default function AnotacoesScreen() {
         // --- MODO DE ESCRITA / EDIÇÃO ---
         <>
             <RichToolbar
-                editor={richText.current}
-                actions={[ 
-                    actions.setBold, 
-                    actions.setItalic, 
+                editor={richText}
+                actions={[
+                    actions.setBold,
+                    actions.setItalic,
                     actions.setUnderline,
                     actions.setStrikethrough,
-                    actions.insertH1, 
-                    actions.insertH2, 
+                    actions.insertH1,
+                    actions.insertH2,
                     actions.insertH3,
-                    actions.insertBulletsList, 
+                    actions.insertBulletsList,
                     actions.insertOrderedList,
                  ]}
                 style={styles.richToolbar}
@@ -193,136 +193,92 @@ export default function AnotacoesScreen() {
 
 // --- ESTILOS ---
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  
-  // --- Estilos do Modo de Escrita ---
-  editorContainer: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    borderRadius: 8,
-  },
-  richToolbar: {
-    backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    paddingHorizontal: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 1.41,
-    elevation: 2,
-  },
-  richEditor: {
-    minHeight: 300,
-    backgroundColor: 'white',
-  },
-
-  // --- Estilos do Modo de Lista ---
-  list: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  semNotas: {
-    textAlign: 'center',
-    color: '#888',
-    fontSize: 16,
-    marginTop: 40,
-    fontFamily: 'Inter-Regular',
-  },
-  notaBox: {
-    backgroundColor: 'white',
-    padding: 15,
-    marginBottom: 15,
-    borderRadius: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
+  const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#f0f0f0',
     },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  rowBack: {
-    alignItems: 'center',
-    backgroundColor: '#DDD',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 0,
-    marginBottom: 15,
-    borderRadius: 8,
-  },
-  backBtn: {
-    alignItems: 'center',
-    bottom: 0,
-    justifyContent: 'center',
-    position: 'absolute',
-    top: 0,
-    width: 75,
-  },
-  backLeftBtn: {
-    backgroundColor: '#00bfff',
-    left: 0,
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-  },
-  backRightBtn: {
-    backgroundColor: '#ff4d4d',
-    right: 0,
-    borderTopRightRadius: 8,
-    borderBottomRightRadius: 8,
-  },
-  backTextWhite: {
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-
-  // --- Botões (Comuns e Específicos) ---
-  button: {
-    padding: 15,
-    alignItems: 'center',
-    marginBottom: 10,
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  saveButton: {
-    backgroundColor: '#00bfff',
-    marginTop: 10,
-    marginHorizontal: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  fab: {
-    position: 'absolute',
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#00bfff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 20,
-    bottom: 30,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-  },
-  fabIcon: {
-    fontSize: 30,
-    color: 'white',
-  },
+    rowBack: {
+        alignItems: 'center',
+        backgroundColor: '#DDD',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: 15,
+    },
+    backBtn: {
+        alignItems: 'center',
+        bottom: 0,
+        justifyContent: 'center',
+        position: 'absolute',
+        top: 0,
+        width: 75,
+    },
+    backLeftBtn: {
+        backgroundColor: 'blue',
+        left: 0,
+    },
+    backRightBtn: {
+        backgroundColor: 'red',
+        right: 0,
+    },
+    backTextWhite: {
+        color: '#FFF',
+    },
+    richToolbar: {
+        backgroundColor: '#f9f9f9',
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',
+    },
+    editorContainer: {
+        flex: 1,
+    },
+    richEditor: {
+        minHeight: 200,
+    },
+    button: {
+        backgroundColor: '#007BFF',
+        padding: 15,
+        borderRadius: 5,
+        alignItems: 'center',
+        margin: 10,
+    },
+    saveButton: {
+        backgroundColor: '#28a745',
+    },
+    buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    notaBox: {
+        backgroundColor: 'white',
+        padding: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',
+    },
+    list: {
+        flex: 1,
+    },
+    semNotas: {
+        textAlign: 'center',
+        marginTop: 50,
+        fontSize: 16,
+        color: '#999',
+    },
+    fab: {
+        position: 'absolute',
+        width: 56,
+        height: 56,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 20,
+        bottom: 20,
+        backgroundColor: '#007BFF',
+        borderRadius: 28,
+        elevation: 8,
+    },
+    fabIcon: {
+        fontSize: 24,
+        color: 'white',
+    },
 });

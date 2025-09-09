@@ -1,0 +1,21 @@
+public class TestePilhaPessoa {
+    public static void main(String[] args) {
+        PilhaLista<Pessoa> pilha = new PilhaLista<>();
+
+        pilha.push(new Pessoa("Ana", 25));
+        pilha.push(new Pessoa("Bruno", 30));
+        pilha.push(new Pessoa("Carla", 28));
+
+        System.out.println("Pilha de pessoas:");
+        pilha.imprimir();
+
+        // Busca por nome
+        String nomeBusca = "Bruno";
+        Pessoa encontrada = pilha.buscar(p -> p.nome.equalsIgnoreCase(nomeBusca));
+        if (encontrada != null) {
+            System.out.println("Pessoa encontrada: " + encontrada);
+        } else {
+            System.out.println("Pessoa não encontrada.");
+        }
+    }
+}

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { Link, useLocalSearchParams, Stack } from "expo-router";
@@ -18,7 +17,7 @@ export default function TitulosScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-        <Stack.Screen options={{ title: livro.nome }} />
+      <Stack.Screen options={{ title: livro.nome }} />
       <FlatList
         data={livro.titulos}
         keyExtractor={(item, index) => index.toString()}
@@ -48,5 +47,6 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 18,
+    color: "#000",
   },
 });

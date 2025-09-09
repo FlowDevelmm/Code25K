@@ -1,16 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function PlaceholderScreen() {
-  const router = useRouter();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Página Placeholder</Text>
-      
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Text style={styles.backButtonText}>Voltar</Text>
-      </TouchableOpacity>
+      <Text style={styles.text}>Esta é uma tela de placeholder.</Text>
     </View>
   );
 }
@@ -20,25 +14,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
-    padding: 20,
+    backgroundColor: '#fff',
   },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#00bfff',
-    marginBottom: 10,
-  },
-  
-  backButton: {
-    backgroundColor: '#00bfff',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 8,
-  },
-  backButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+  text: {
+    fontSize: 20,
+    color: '#000',
   },
 });

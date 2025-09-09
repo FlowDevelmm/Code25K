@@ -1,4 +1,3 @@
-
 import React from "react";
 import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { Link, useLocalSearchParams, Stack } from "expo-router";
@@ -49,5 +48,6 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 18,
+    color: "#000",
   },
 });
