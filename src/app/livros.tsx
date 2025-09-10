@@ -12,7 +12,13 @@ export default function LivrosScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: 'Livros' }} />
+      <Stack.Screen 
+        options={{
+          title: 'Livros', 
+          headerStyle: { backgroundColor: colors.card }, 
+          headerTintColor: colors.text 
+        }}
+      />
       <FlatList
         data={codigoCivil}
         keyExtractor={(item, index) => index.toString()}

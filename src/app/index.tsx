@@ -5,7 +5,6 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useTheme } from '../ThemeContext';
 import { MaterialIcons } from '@expo/vector-icons';
-import MoreOptionsModal from '../components/MoreOptionsModal';
 import { codigoCivil, Artigo } from '../data';
 
 SplashScreen.preventAutoHideAsync();
@@ -17,6 +16,9 @@ const normalize = (size) => size * scale;
 
 interface SearchResult extends Artigo {
   path: string;
+  livroIndex: number;
+  tituloIndex: number;
+  capituloIndex: number;
 }
 
 const getStyles = (colors) => StyleSheet.create({
@@ -172,7 +174,6 @@ export default function MainScreen() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const { colors, isDarkMode, toggleTheme } = useTheme();
   const styles = getStyles(colors);
-  const [isModalVisible, setModalVisible] = useState(false);
 
   const [fontsLoaded, fontError] = useFonts({
     'Inter-Regular': require("../../assets/fonts/Inter_18pt-Regular.ttf"),
@@ -188,25 +189,31 @@ export default function MainScreen() {
 
   const searchableData = useMemo(() => {
     const flatData: SearchResult[] = [];
-    codigoCivil.forEach((livro) => {
-      livro.titulos.forEach((titulo) => {
-        titulo.capitulos.forEach((capitulo) => {
+    codigoCivil.forEach((livro, livroIndex) => {
+      livro.titulos.forEach((titulo, tituloIndex) => {
+        titulo.capitulos.forEach((capitulo, capituloIndex) => {
           const processArtigos = (artigos: Artigo[], path: string) => {
             artigos.forEach((artigo) => {
-              flatData.push({ ...artigo, path });
+              flatData.push({ ...artigo, path, livroIndex, tituloIndex, capituloIndex });
             });
           };
 
           const basePath = `${livro.nome} > ${titulo.nome} > ${capitulo.nome}`;
-          processArtigos(capitulo.artigos, basePath);
-
+          if (capitulo.artigos) {
+            processArtigos(capitulo.artigos, basePath);
+          }
+          
           capitulo.secoes?.forEach((secao) => {
             const secaoPath = `${basePath} > ${secao.nome}`;
-            processArtigos(secao.artigos, secaoPath);
+            if (secao.artigos) {
+              processArtigos(secao.artigos, secaoPath);
+            }
 
             secao.subsecoes?.forEach((subsecao) => {
               const subsecaoPath = `${secaoPath} > ${subsecao.nome}`;
-              processArtigos(subsecao.artigos, subsecaoPath);
+              if (subsecao.artigos) {
+                processArtigos(subsecao.artigos, subsecaoPath);
+              }
             });
           });
         });
@@ -223,27 +230,26 @@ export default function MainScreen() {
 
     const results = searchableData.filter(
       (item) =>
-        item.nome.toLowerCase().includes(search.toLowerCase()) ||
-        item.texto.toLowerCase().includes(search.toLowerCase())
+        (item.nome && item.nome.toLowerCase().includes(search.toLowerCase())) ||
+        (item.texto && item.texto.toLowerCase().includes(search.toLowerCase()))
     );
     setSearchResults(results);
   }, [search, searchableData]);
 
-  const artigosDoDia = [
-    "Todos são iguais perante a lei.",
-    "Direito à propriedade.",
-    "Liberdade de expressão.",
-    "Direito à educação."
-  ];
+  const artigosDoDia = useMemo(() => {
+    const allArtigos = searchableData.filter(artigo => artigo.texto && artigo.texto.length > 50);
+    const shuffled = allArtigos.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 5);
+  }, [searchableData]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex(prev => (prev + 1) % artigosDoDia.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [artigosDoDia.length]);
 
   if (!fontsLoaded && !fontError) {
     return null;
@@ -269,6 +275,8 @@ export default function MainScreen() {
       );
     }
 
+    const currentArtigo = artigosDoDia[currentIndex];
+
     return (
       <ScrollView 
         style={{ flex: 1 }}
@@ -280,13 +288,13 @@ export default function MainScreen() {
           <View style={styles.partRow}>
             <Link href="/livros" asChild>
               <TouchableOpacity style={styles.partBox}>
-                <MaterialIcons name="book" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
+                <MaterialIcons name="book" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
                 <Text style={styles.partTitle}>Código Civil</Text>
               </TouchableOpacity>
             </Link>
             <Link href="/anotacoes" asChild>
               <TouchableOpacity style={styles.partBox}>
-                <MaterialIcons name="edit" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
+                <MaterialIcons name="edit" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
                 <Text style={styles.partTitle}>Anotações</Text>
               </TouchableOpacity>
             </Link>
@@ -294,22 +302,32 @@ export default function MainScreen() {
           <View style={styles.partRow}>
             <Link href="/favoritos" asChild>
               <TouchableOpacity style={styles.partBox}>
-                <MaterialIcons name="star" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
+                <MaterialIcons name="star" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
                 <Text style={styles.partTitle}>Favoritos</Text>
               </TouchableOpacity>
             </Link>
-            <TouchableOpacity style={styles.partBox} onPress={() => setModalVisible(true)}>
-              <MaterialIcons name="add" size={normalize(30)} color={colors.icon} style={styles.partIcon} />
-              <Text style={styles.partTitle}>Mais</Text>
+            <TouchableOpacity style={styles.partBox}>
+              <MaterialIcons name="info" size={normalize(30)} color={colors.primary} style={styles.partIcon} />
+              <Text style={styles.partTitle}>Sobre</Text>
             </TouchableOpacity>
           </View>
         </View>
 
         <View style={styles.carouselContainer}>
           <Text style={styles.carouselTitle}>Artigo do Dia</Text>
-          <View style={styles.carouselItem}>
-            <Text style={styles.carouselText}>{artigosDoDia[currentIndex]}</Text>
-          </View>
+          <TouchableOpacity 
+            style={styles.carouselItem}
+            onPress={() => router.push({ 
+              pathname: '/artigos', 
+              params: { 
+                livroIndex: currentArtigo.livroIndex, 
+                tituloIndex: currentArtigo.tituloIndex, 
+                capituloIndex: currentArtigo.capituloIndex 
+              }
+            })}
+          >
+            <Text style={styles.carouselText}>{currentArtigo?.nome}</Text>
+          </TouchableOpacity>
           <View style={styles.dotsContainer}>
             {artigosDoDia.map((_, index) => (
               <View
@@ -358,11 +376,6 @@ export default function MainScreen() {
 
         {renderContent()}
       </View>
-      <MoreOptionsModal 
-        isVisible={isModalVisible} 
-        onClose={() => setModalVisible(false)} 
-        onOptionPress={(option) => console.log("Selected:", option)}
-      />
     </View>
   );
 }

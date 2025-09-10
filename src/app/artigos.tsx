@@ -57,7 +57,7 @@ export default function ArtigosScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: capitulo.nome }} />
+      <Stack.Screen options={{ title: capitulo.nome, headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
       <FlatList
         data={capitulo.artigos || []}
         keyExtractor={(item, index) => index.toString()}

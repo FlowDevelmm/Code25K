@@ -1,52 +1,64 @@
 import React from "react";
 import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { Link, useLocalSearchParams, Stack } from "expo-router";
+import { useTheme } from "../ThemeContext";
 import { codigoCivil } from "../data";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function TitulosScreen() {
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
   const { livroIndex } = useLocalSearchParams<{ livroIndex: string }>();
   const livro = codigoCivil[parseInt(livroIndex)];
 
   if (!livro) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Livro não encontrado.</Text>
+        <Text style={styles.itemText}>Livro não encontrado.</Text>
       </SafeAreaView>
     );
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: livro.nome }} />
+      <Stack.Screen options={{ title: livro.nome, headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
       <FlatList
         data={livro.titulos}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index: tituloIndex }) => (
           <Link href={{ pathname: "/capitulos", params: { livroIndex, tituloIndex } }} asChild>
-            <TouchableOpacity>
-              <View style={styles.itemContainer}>
-                <Text style={styles.itemText}>{item.nome}</Text>
-              </View>
+            <TouchableOpacity style={styles.itemContainer}>
+              <Text style={styles.itemText}>{item.nome}</Text>
+              <MaterialIcons name="chevron-right" size={24} color={colors.text} />
             </TouchableOpacity>
           </Link>
         )}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
   itemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
+    backgroundColor: colors.card,
   },
   itemText: {
     fontSize: 18,
-    color: "#000",
+    color: colors.text,
+    fontFamily: 'Inter-Regular',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: colors.border,
+    marginLeft: 16,
   },
 });
