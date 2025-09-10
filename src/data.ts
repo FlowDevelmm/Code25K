@@ -231,6 +231,126 @@ export const codigoCivil: Livro[] = [
                         texto: "A prescrição e a caducidade são reguladas pela lei aplicável ao direito a que uma ou outra se refere."
                       }
                     ]
+                  },
+                  {
+                    nome: "SUBSECÇÃO III - Lei reguladora das obrigações",
+                    artigos: [
+                      {
+                        nome: "Art.º 41º - Obrigações provenientes de negócios jurídicos",
+                        texto: "1. As obrigações provenientes de negócio jurídico, assim como a própria substância dele, são reguladas pela lei que os respectivos sujeitos tiverem designado ou houverem tido em vista. 2. A designação ou referência das partes só pode, todavia, recair sobre lei cuja aplicabilidade corresponda a um interesse sério dos declarantes ou esteja em conexão com algum dos elementos do negócio jurídico atendíveis no domínio do direito internacional privado."
+                      },
+                      {
+                        nome: "Art.º 42º - Critério supletivo",
+                        texto: "1. Na falta de determinação da lei competente, atende-se, nos negócios jurídicos unilaterais, à lei da residência habitual do declarante e, nos contratos, à lei da residência habitual comum das partes. 2. Na falta de residência comum, é aplicável, nos contratos gratuitos, a lei da residência habitual daquele que atribui o benefício e, nos restantes contratos, a lei do lugar da celebração."
+                      },
+                      {
+                        nome: "Art.º 43º - Gestão de negócios",
+                        texto: "À gestão de negócios é aplicável a lei do lugar em que decorre a principal actividade do gestor."
+                      },
+                      {
+                        nome: "Art.º 44º - Enriquecimento sem causa",
+                        texto: "O enriquecimento sem causa é regulado pela lei com base na qual se verificou a transferência do valor patrimonial a favor do enriquecido."
+                      },
+                      {
+                        nome: "Art.º 45º - Responsabilidade extracontratual",
+                        texto: "1. A responsabilidade extracontratual fundada, quer em acto ilícito, quer no risco ou em qualquer conduta lícita, é regulada pela lei do Estado onde decorreu a principal actividade causadora do prejuízo; em caso de responsabilidade por omissão, é aplicável a lei do lugar onde o responsável deveria ter agido. 2. Se a lei do Estado onde se produziu o efeito lesivo considerar responsável o agente, mas não o considerar como tal a lei do país onde decorreu a sua actividade, é aplicável a primeira lei, desde que o agente devesse prever a produção de um dano, naquele país, como consequência do seu acto ou omissão. 3. Se, porém, o agente e o lesado tiverem a mesma nacionalidade ou, na falta dela, a mesma residência habitual, e se encontrarem ocasionalmente em país estrangeiro, a lei aplicável será a da nacionalidade ou a da residência comum, sem prejuízo das disposições do Estado local que devam ser aplicadas indistintamente a todas as pessoas."
+                      }
+                    ]
+                  },
+                  {
+                    nome: "SUBSECÇÃO IV - Lei reguladora das coisas",
+                    artigos: [
+                      {
+                        nome: "Art.º 46º - Direitos reais",
+                        texto: "1. O regime da posse, propriedade e demais direitos reais, é definido pela lei do Estado em cujo território as coisas se encontrem situadas. 2. Em tudo quanto respeita a constituição ou transferência de direitos reais sobre coisas em trânsito, são estas havidas como situadas no país do destino. 3. A constituição e transferência de direitos sobre os meios de transportes submetidos a um regime de matrícula são reguladas pela lei do país onde a matrícula tiver sido efectuada."
+                      },
+                      {
+                        nome: "Art.º 47º - Capacidade para constituir direitos reais sobre coisas imóveis ou dispor deles",
+                        texto: "É igualmente definida pela lei da situação da coisa a capacidade para constituir direitos reais sobre coisas imóveis ou para dispor deles, desde que essa lei assim o determine; de contrário, é aplicável a lei pessoal."
+                      },
+                      {
+                        nome: "Art.º 48º - Propriedade intelectual",
+                        texto: "1. Os direitos de autor são regulados pela lei do lugar da primeira publicação da obra e, não estando esta publicada, pela lei pessoal do autor, sem prejuízo do disposto em legislação especial. 2. A propriedade industrial é regulada pela lei do país da sua criação."
+                      }
+                    ]
+                  },
+                  {
+                    nome: "SUBSECÇÃO V - Lei Reguladora das relações de familia",
+                    artigos: [
+                      {
+                        nome: "Art 49º - Capacidade para contrair casamento ou celebrar convenções antenupciais",
+                        texto: "A capacidade para contrair casamento ou celebrar a convenção antenupcial é regulada, em relação a cada nubente, pela respectiva lei pessoal, à qual compete ainda definir o regime da falta e dos vícios da vontade dos contraentes."
+                      },
+                      {
+                        nome: "Art.º 50º - Forma do casamento",
+                        texto: "A forma do casamento é regulada pela lei do Estado em que o acto é celebrado, salvo o disposto no artigo seguinte."
+                      },
+                      {
+                        nome: "Art.º 51º - Desvios",
+                        texto: "1. O casamento de dois estrangeiros em Portugal pode ser celebrado segundo a forma prescrita na lei nacional de qualquer dos contraentes, perante os respectivos agentes diplomáticos ou consulares, desde que igual competência seja reconhecida por essa lei aos agentes diplomáticos e consulares portugueses. 2. O casamento no estrangeiro de dois portugueses ou de português e estrangeiro pode ser celebrado perante o agente diplomático ou consular do Estado português ou perante os ministros do culto católico; em qualquer caso, o casamento deve ser precedido do processo de publicações, organizado pela entidade competente, a menos que ele seja dispensado nos termos do artigo 1599º. 3. O casamento no estrangeiro de dois portugueses ou de português e estrangeiro, em harmonia com as leis canónicas, é havido como casamento católico, seja qual for a forma legal da celebração do acto segundo a lei local, e à sua transcrição servirá de base o assento do registo paroquial."
+                      },
+                      {
+                        nome: "Art.º 52º - Relações entre os cônjuges",
+                        texto: "1. Salvo o disposto no artigo seguinte, as relações entre os cônjuges são reguladas pela lei nacional comum. 2. Não tendo os cônjuges a mesma nacionalidade, é aplicável a lei da sua residência habitual comum e, na falta desta, a lei do país com o qual a vida familiar se ache mais estreitamente conexa.(1)"
+                      },
+                      {
+                        nome: "Art.º 53º - Convenções antenupciais e regime de bens",
+                        texto: "1. A substância e efeitos das convenções antenupciais e do regime de bens, legal ou convencional, são definidos pela lei nacional dos nubentes ao tempo da celebração do casamento. 2. Não tendo os nubentes a mesma nacionalidade, é aplicável a lei da sua residência habitual comum à data do casamento e, se esta faltar também, a lei da primeira residência conjugal. 3. Se for estrangeira a lei aplicável e um dos nubentes tiver a sua residência habitual em território português, pode ser convencionado um dos regimes admitidos neste código.(1)"
+                      },
+                      {
+                        nome: "Art.º 54º - Modificações do regime de bens",
+                        texto: "1. Aos cônjuges é permitido modificar o regime de bens, legal ou convencional, se a tal forem autorizados pela lei competente nos termos do artigo 52º. 2. A nova convenção em caso nenhum terá efeito retroactivo em prejuízo de terceiro."
+                      },
+                      {
+                        nome: "Art.º 55º - Separação judicial de pessoas e bens e divórcio",
+                        texto: "1. À separação judicial de pessoas e bens e ao divórcio é aplicável o disposto no artigo 52º. 2. Se, porém, na constância do matrimónio houver mudança da lei competente, só pode fundamentar a separação ou o divórcio algum facto relevante ao tempo da sua verificação."
+                      },
+                      {
+                        nome: "Art.º 56º - Constituição da filiação",
+                        texto: "1. À constituição da filiação é aplicável à lei pessoal do progenitor à data do estabelecimento da relação. 2. Tratando-se de filho de mulher casada, a constituição da filiação relativamente ao pai é regulada pela lei nacional comum da mãe e do marido; na falta desta, é aplicável a lei da residência habitual comum dos cônjuges e, se esta também faltar, a lei pessoal do filho. 3. Para os efeitos do número anterior, atender-se-á ao momento do nascimento do filho ou ao momento da dissolução do casamento, se for anterior ao nascimento.(1)"
+                      },
+                      {
+                        nome: "Art.º 57º - Relações entre pais e filhos",
+                        texto: "1. As relações entre pais e filhos são reguladas pela lei nacional comum dos pais e, na falta desta, pela lei da sua residência habitual comum; se os pais residirem habitualmente em Estados diferentes, é aplicável a lei pessoal do filho. 2. Se a filiação apenas se achar estabelecida relativamente a um dos progenitores, aplica- se a lei pessoal deste; se um dos progenitores tiver falecido, é competente a lei pessoal do sobrevivo.(1)"
+                      },
+                      {
+                        nome: "Art.º 58º - Revogado",
+                        texto: "(Revogado pelo DL nº 496/77, de 25/11)"
+                      },
+                      {
+                        nome: "Art.º 59º - Revogado",
+                        texto: "(Revogado pelo DL nº 496/77, de 25/11)"
+                      },
+                      {
+                        nome: "Art.º 60º - Filiação adoptiva",
+                        texto: "1. À constituição da filiação adoptiva é aplicável a lei pessoal do adoptante, sem prejuízo do disposto no número seguinte. 2. Se a adopção for realizada por marido e mulher ou o adoptando for filho do cônjuge do adoptante, é competente a lei nacional comum dos cônjuges e, na falta desta, a lei da sua residência habitual comum; se também esta faltar, será aplicável a lei do país com o qual a vida familiar dos adoptantes se ache mais estreitamente conexa. 3. As relações entre adoptante e adoptado, e entre este e a família de origem, estão sujeitas à lei pessoal do adoptante; no caso previsto no número anterior é aplicável o disposto no artigo 57º. 4. Se a lei competente para regular as relações entre o adoptando e os seus progenitores não conhecer o instituto da adopção, ou não o admitir em relação a quem se encontre na situação familiar do adoptando, a adopção não é permitida.(1)"
+                      },
+                      {
+                        nome: "Art.º 61º - Requisitos especiais da perfilhação ou adopção",
+                        texto: "1. Se, como requisito da perfilhação ou adopção, a lei pessoal do perfilhando ou adoptando exigir o consentimento deste, será a exigência respeitada.(1) 2. Será igualmente respeitada a exigência do consentimento de terceiro a quem o interessado esteja ligado por qualquer relação jurídica de natureza familiar ou tutelar, se provier da lei reguladora desta relação."
+                      }
+                    ]
+                  },
+                  {
+                    nome: "SUBSECÇÃO VI - Lei reguladora das sucessões",
+                    artigos: [
+                      {
+                        nome: "Art.º 62º - Lei competente",
+                        texto: "A sucessão por morte é regulada pela lei pessoal do autor da sucessão ao tempo do falecimento deste, competindo-lhe também definir os poderes do administrador da herança e do executor testamentário."
+                      },
+                      {
+                        nome: "Art.º 63º - Capacidade de disposição",
+                        texto: "1. A capacidade para fazer, modificar ou revogar uma disposição por morte, bem como as exigências da forma especial das disposições por virtude da idade do disponente, são reguladas pela lei pessoal do autor ao tempo da declaração. 2. Aquele que, depois de ter feito a disposição, adquirir nova lei pessoal conserva a capacidade necessária para revogar a disposição nos termos da lei anterior."
+                      },
+                      {
+                        nome: "Art.º 64º - Interpretação das disposições; falta e vícios da vontade",
+                        texto: "É a lei pessoal do autor da herança ao tempo da declaração que regula: a) A interpretação das respectivas cláusulas e disposições, salvo se houver referência expressa ou implícita a outra lei; b) A falta e vícios da vontade; c) A admissibilidade de testamentos de mão comum ou de pactos sucessórios, sem prejuízo, quanto a estes, do disposto no artigo 53º."
+                      },
+                      {
+                        nome: "Art.º 65º - Forma",
+                        texto: "1. As disposições por morte, bem como a sua revogação ou modificação, serão válidas, quanto à forma, se corresponderem às prescrições da lei do lugar onde o acto for celebrado, ou às da lei pessoal do autor da herança, quer no momento da declaração, quer no momento da morte, ou ainda às prescrições da lei para que remeta a norma de conflitos da lei local. 2. Se, porém, a lei pessoal do autor da herança no momento da declaração exigir, sob pena de nulidade ou ineficácia, a observância de determinada forma, ainda que o acto seja praticado no estrangeiro, será a exigência respeitada."
+                      }
+                    ]
                   }
                 ],
                 artigos: []
@@ -238,611 +358,8 @@ export const codigoCivil: Livro[] = [
             ],
             artigos: []
           }
-          {
-            "livro": "Livro I",
-            "titulo": {
-              "nome": "Título I - Das leis, sua interpretação e aplicação",
-              "capitulos": [
-                {
-                  "nome": "Capítulo III - Direitos dos estrangeiros e conflitos de leis",
-                  "seccoes": [
-                    {
-                      "nome": "Subsecção III - Lei reguladora das obrigações",
-                      "artigos": [
-                        {
-                          "numero": "Art.º 43º",
-                          "epigrafe": "Gestão de negócios",
-                          "paragrafos": [
-                            "À gestão de negócios é aplicável a lei do lugar em que decorre a principal actividade do gestor."
-                          ]
-                        },
-                        {
-                          "numero": "Art.º 44º",
-                          "epigrafe": "Enriquecimento sem causa",
-                          "paragrafos": [
-                            "O enriquecimento sem causa é regulado pela lei com base na qual se verificou a transferência do valor patrimonial a favor do enriquecido."
-                          ]
-                        },
-                        {
-                          "numero": "Art.º 45º",
-                          "epigrafe": "Responsabilidade extracontratual",
-                          "paragrafos": [
-                            "A responsabilidade extracontratual fundada, quer em acto ilícito, quer no risco ou em qualquer conduta lícita, é regulada pela lei do Estado onde decorreu a principal actividade causadora do prejuízo; em caso de responsabilidade por omissão, é aplicável a lei do lugar onde o responsável deveria ter agido.",
-                            "Se a lei do Estado onde se produziu o efeito lesivo considerar responsável o agente, mas não o considerar como tal a lei do país onde decorreu a sua actividade, é aplicável a primeira lei, desde que o agente devesse prever a produção de um dano, naquele país, como consequência do seu acto ou omissão.",
-                            "Se, porém, o agente e o lesado tiverem a mesma nacionalidade ou, na falta dela, a mesma residência habitual, e se encontrarem ocasionalmente em país estrangeiro, a lei aplicável será a da nacionalidade ou a da residência comum, sem prejuízo das disposições do Estado local que devam ser aplicadas indistintamente a todas as pessoas."
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "nome": "Subsecção IV - Lei reguladora das coisas",
-                      "artigos": [
-                        {
-                          "numero": "Art.º 46º",
-                          "epigrafe": "Direitos reais",
-                          "paragrafos": [
-                            "O regime da posse, propriedade e demais direitos reais, é definido pela lei do Estado em cujo território as coisas se encontrem situadas.",
-                            "Em tudo quanto respeita a constituição ou transferência de direitos reais sobre coisas em trânsito, são estas havidas como situadas no país do destino.",
-                            "A constituição e transferência de direitos sobre os meios de transportes submetidos a um regime de matrícula são reguladas pela lei do país onde a matrícula tiver sido efectuada."
-                          ]
-                        },
-                        {
-                          "numero": "Art.º 47º",
-                          "epigrafe": "Capacidade para constituir direitos reais sobre coisas imóveis ou dispor deles",
-                          "paragrafos": [
-                            "É igualmente definida pela lei da situação da coisa a capacidade para constituir direitos reais sobre coisas imóveis ou para dispor deles, desde que essa lei assim o determine; de contrário, é aplicável a lei pessoal."
-                          ]
-                        },
-                        {
-                          "numero": "Art.º 48º",
-                          "epigrafe": "Propriedade intelectual",
-                          "paragrafos": [
-                            "Os direitos de autor são regulados pela lei do lugar da primeira publicação da obra e, não estando esta publicada, pela lei pessoal do autor, sem prejuízo do disposto em legislação especial.",
-                            "A propriedade industrial é regulada pela lei do país da sua criação."
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "nome": "Subsecção V - Lei reguladora das relações de família",
-                      trecho na sequência do nosso ** JSON unificado**, mantendo a hierarquia e o padrão que já estamos usando para o ** Capítulo III - Direitos dos estrangeiros e conflitos de leis **.  
-
-Segue a continuação:
-
-                    ```json
-{
-  "livro": "Livro I",
-  "titulo": {
-    "nome": "Título I - Das leis, sua interpretação e aplicação",
-    "capitulos": [
-      {
-        "nome": "Capítulo III - Direitos dos estrangeiros e conflitos de leis",
-        "seccoes": [
-          {
-            "nome": "Subsecção III - Lei reguladora das obrigações",
-            "artigos": [
-              {
-                "numero": "Art.º 43º",
-                "epigrafe": "Gestão de negócios",
-                "paragrafos": [
-                  "À gestão de negócios é aplicável a lei do lugar em que decorre a principal actividade do gestor."
-                ]
-              },
-              {
-                "numero": "Art.º 44º",
-                "epigrafe": "Enriquecimento sem causa",
-                "paragrafos": [
-                  "O enriquecimento sem causa é regulado pela lei com base na qual se verificou a transferência do valor patrimonial a favor do enriquecido."
-                ]
-              },
-              {
-                "numero": "Art.º 45º",
-                "epigrafe": "Responsabilidade extracontratual",
-                "paragrafos": [
-                  "A responsabilidade extracontratual fundada, quer em acto ilícito, quer no risco ou em qualquer conduta lícita, é regulada pela lei do Estado onde decorreu a principal actividade causadora do prejuízo; em caso de responsabilidade por omissão, é aplicável a lei do lugar onde o responsável deveria ter agido.",
-                  "Se a lei do Estado onde se produziu o efeito lesivo considerar responsável o agente, mas não o considerar como tal a lei do país onde decorreu a sua actividade, é aplicável a primeira lei, desde que o agente devesse prever a produção de um dano, naquele país, como consequência do seu acto ou omissão.",
-                  "Se, porém, o agente e o lesado tiverem a mesma nacionalidade ou, na falta dela, a mesma residência habitual, e se encontrarem ocasionalmente em país estrangeiro, a lei aplicável será a da nacionalidade ou a da residência comum, sem prejuízo das disposições do Estado local que devam ser aplicadas indistintamente a todas as pessoas."
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Subsecção IV - Lei reguladora das coisas",
-            "artigos": [
-              {
-                "numero": "Art.º 46º",
-                "epigrafe": "Direitos reais",
-                "paragrafos": [
-                  "O regime da posse, propriedade e demais direitos reais, é definido pela lei do Estado em cujo território as coisas se encontrem situadas.",
-                  "Em tudo quanto respeita a constituição ou transferência de direitos reais sobre coisas em trânsito, são estas havidas como situadas no país do destino.",
-                  "A constituição e transferência de direitos sobre os meios de transportes submetidos a um regime de matrícula são reguladas pela lei do país onde a matrícula tiver sido efectuada."
-                ]
-              },
-              {
-                "numero": "Art.º 47º",
-                "epigrafe": "Capacidade para constituir direitos reais sobre coisas imóveis ou dispor deles",
-                "paragrafos": [
-                  "É igualmente definida pela lei da situação da coisa a capacidade para constituir direitos reais sobre coisas imóveis ou para dispor deles, desde que essa lei assim o determine; de contrário, é aplicável a lei pessoal."
-                ]
-              },
-              {
-                "numero": "Art.º 48º",
-                "epigrafe": "Propriedade intelectual",
-                "paragrafos": [
-                  "Os direitos de autor são regulados pela lei do lugar da primeira publicação da obra e, não estando esta publicada, pela lei pessoal do autor, sem prejuízo do disposto em legislação especial.",
-                  "A propriedade industrial é regulada pela lei do país da sua criação."
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Subsecção V - Lei reguladora das relações de família",
-            "artigos": [
-              {
-                "numero": "Art.º 49º",
-                "epigrafe": "Capacidade para contrair casamento ou celebrar convenções antenupciais",
-                "paragrafos": [
-                  "A capacidade para contrair casamento ou celebrar a convenção antenupcial é regulada, em relação a cada nubente, pela respectiva lei pessoal, à qual compete ainda definir o regime da falta e dos vícios da vontade dos contraentes."
-                ]
-              "artigos": [
-              {
-                "numero": "Art.º 49º",
-                "epigrafe": "Capacidade para contrair casamento ou celebrar convenções antenupciais",
-                "paragrafos": [
-                  "A capacidade para contrair casamento ou celebrar a convenção antenupcial é regulada, em relação a cada nubente, pela respectiva lei pessoal, à qual compete ainda definir o regime da falta e dos vícios da vontade dos contraentes."
-                ]
-              },
-              {
-                "numero": "Art.º 50º",
-                "epigrafe": "Forma do casamento",
-                "paragrafos": [
-                  "A forma do casamento é regulada pela lei do Estado em que o acto é celebrado, salvo o disposto no artigo seguinte."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-
         ]
       }
     ]
   }
 ];
-{
-  "livro": "Livro I",
-  "titulo": {
-    "nome": "Título I - Das leis, sua interpretação e aplicação",
-    "capitulos": [
-      {
-        "nome": "Capítulo III - Direitos dos estrangeiros e conflitos de leis",
-        "seccoes": [
-          {
-            "nome": "Subsecção V - Lei reguladora das relações de família",
-            "artigos": [
-              {
-                "numero": "Art.º 51º",
-                "epigrafe": "Desvios",
-                "paragrafos": [
-                  "O casamento de dois estrangeiros em Portugal pode ser celebrado segundo a forma prescrita na lei nacional de qualquer dos contraentes, perante os respectivos agentes diplomáticos ou consulares, desde que igual competência seja reconhecida por essa lei aos agentes diplomáticos e consulares portugueses.",
-                  "O casamento no estrangeiro de dois portugueses ou de português e estrangeiro pode ser celebrado perante o agente diplomático ou consular do Estado português ou perante os ministros do culto católico; em qualquer caso, o casamento deve ser precedido do processo de publicações, organizado pela entidade competente, a menos que ele seja dispensado nos termos do artigo 1599º.",
-                  "O casamento no estrangeiro de dois portugueses ou de português e estrangeiro, em harmonia com as leis canónicas, é havido como casamento católico, seja qual for a forma legal da celebração do acto segundo a lei local, e à sua transcrição servirá de base o assento do registo paroquial."
-                ]
-              },
-              {
-                "numero": "Art.º 52º",
-                "epigrafe": "Relações entre os cônjuges",
-                "paragrafos": [
-                  "Salvo o disposto no artigo seguinte, as relações entre os cônjuges são reguladas pela lei nacional comum.",
-                  "Não tendo os cônjuges a mesma nacionalidade, é aplicável a lei da sua residência habitual comum e, na falta desta, a lei do país com o qual a vida familiar se ache mais estreitamente conexa.(1)"
-                ]
-              },
-              {
-                "numero": "Art.º 53º",
-                "epigrafe": "Convenções antenupciais e regime de bens",
-                "paragrafos": [
-                  "A substância e efeitos das convenções antenupciais e do regime de bens, legal ou convencional, são definidos pela lei nacional dos nubentes ao tempo da celebração do casamento.",
-                  "Não tendo os nubentes a mesma nacionalidade, é aplicável a lei da sua residência habitual comum à data do casamento e, se esta faltar também, a lei da primeira residência conjugal.",
-                  "Se for estrangeira a lei aplicável e um dos nubentes tiver a sua residência habitual em território português, pode ser convencionado um dos regimes admitidos neste código.(1)"
-                ]
-              },
-              {
-                "numero": "Art.º 54º",
-                "epigrafe": "Modificações do regime de bens",
-                "paragrafos": [
-                  "Aos cônjuges é permitido modificar o regime de bens, legal ou convencional, se a tal forem autorizados pela lei competente nos termos do artigo 52º.",
-                  "A nova convenção em caso nenhum terá efeito retroactivo em prejuízo de terceiro."
-                ]
-              },
-              {
-                "numero": "Art.º 55º",
-                "epigrafe": "Separação judicial de pessoas e bens e divórcio",
-                "paragrafos": [
-                  "À separação judicial de pessoas e bens e ao divórcio é aplicável o disposto no artigo 52º.",
-                  "Se, porém, na constância do matrimónio houver mudança da lei competente, só pode fundamentar a separação ou o divórcio algum facto relevante ao tempo da sua verificação."
-                ]
-              },
-              {
-                "numero": "Art.º 56º",
-                "epigrafe": "Constituição da filiação",
-                "paragrafos": [
-                  "À constituição da filiação é aplicável à lei pessoal do progenitor à data do estabelecimento da relação.",
-                  "Tratando-se de filho de mulher casada, a constituição da filiação relativamente ao pai é regulada pela lei nacional comum da mãe e do marido; na falta desta, é aplicável a lei da residência habitual comum dos cônjuges e, se esta também faltar, a lei pessoal do filho."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-{
-  "livro": "Livro I",
-  "titulo": {
-    "nome": "Título I - Das leis, sua interpretação e aplicação",
-    "capitulos": [
-      {
-        "nome": "Capítulo III - Direitos dos estrangeiros e conflitos de leis",
-        "seccoes": [
-          {
-            "nome": "Subsecção II - Lei reguladora dos negócios jurídicos",
-            "artigos": [
-              {
-                "numero": "Art.º 36º",
-                "epigrafe": "Forma da declaração",
-                "paragrafos": [
-                  "A forma da declaração negocial é regulada pela lei aplicável à substância do negócio; é, porém, suficiente a observância da lei em vigor no lugar em que é feita a declaração, salvo se a lei reguladora da substância do negócio exigir, sob pena de nulidade ou ineficácia, a observância de determinada forma, ainda que o negócio seja celebrado no estrangeiro.",
-                  "A declaração negocial é ainda formalmente válida se, em vez da forma prescrita na lei local, tiver sido observada a forma prescrita pelo Estado para que remete a norma de conflitos daquela lei, sem prejuízo do disposto na última parte do número anterior."
-                ]
-              },
-              {
-                "numero": "Art.º 37º",
-                "epigrafe": "Representação legal",
-                "paragrafos": [
-                  "A representação legal está sujeita à lei reguladora da relação jurídica de que nasce o poder representativo."
-                ]
-              },
-              {
-                "numero": "Art.º 38º",
-                "epigrafe": "Representação orgânica",
-                "paragrafos": [
-                  "A representação da pessoa colectiva por intermédio dos seus órgãos é regulada pela respectiva lei pessoal."
-                ]
-              },
-              {
-                "numero": "Art.º 39º",
-                "epigrafe": "Representação voluntária",
-                "paragrafos": [
-                  "A representação voluntária é regulada, quanto à existência, extensão, modificação, efeitos e extinção dos poderes representativos, pela lei do Estado em que os poderes são exercidos.",
-                  "Porém, se o representante exercer os poderes representativos em país diferente daquele que o representado indicou e o facto for conhecido do terceiro com quem contrate, é aplicável a lei do país da residência habitual do representado.",
-                  "Se o representante exercer profissionalmente a representação e o facto for conhecido do terceiro contratante, é aplicável a lei do domicílio profissional.",
-                  "Quando a representação se refira à disposição ou administração de bens imóveis, é aplicável a lei do país da situação desses bens."
-                ]
-              },
-              {
-                "numero": "Art.º 40º",
-                "epigrafe": "Prescrição e caducidade",
-                "paragrafos": [
-                  "A prescrição e a caducidade são reguladas pela lei aplicável ao direito a que uma ou outra se refere."
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Subsecção III - Lei reguladora das obrigações",
-            "artigos": [
-              {
-                "numero": "Art.º 41º",
-                "epigrafe": "Obrigações provenientes de negócios jurídicos",
-                "paragrafos": [
-                  "As obrigações provenientes de negócio jurídico, assim como a própria substância dele, são reguladas pela lei que os respectivos sujeitos tiverem designado ou houverem tido em vista.",
-                  "A designação ou referência das partes só pode, todavia, recair sobre lei cuja aplicabilidade corresponda a um interesse sério dos declarantes ou esteja em conexão com algum dos elementos do negócio jurídico atendíveis no domínio do direito internacional privado."
-                ]
-              },
-              {
-                "numero": "Art.º 42º",
-                "epigrafe": "Critério supletivo",
-                "paragrafos": [
-                  "Na falta de determinação da lei competente, atende-se, nos negócios jurídicos unilaterais, à lei da residência habitual do declarante e, nos contratos, à lei da residência habitual comum das partes.",
-                  "Na falta de residência comum, é aplicável, nos contratos gratuitos, a lei da residência habitual daquele que atribui o benefício e, nos restantes contratos, a lei do lugar da celebração."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-  {
-  "livro": "Livro I",
-  "titulo": {
-    "nome": "Título I - Das leis, sua interpretação e aplicação",
-    "capitulos": [
-      {
-        "nome": "Capítulo III - Direitos dos estrangeiros e conflitos de leis",
-        "seccoes": [
-          {
-            "nome": "Subsecção III - Lei reguladora das obrigações",
-            "artigos": [
-              {
-                "numero": "Art.º 43º",
-                "epigrafe": "Gestão de negócios",
-                "paragrafos": [
-                  "À gestão de negócios é aplicável a lei do lugar em que decorre a principal actividade do gestor."
-                ]
-              },
-              {
-                "numero": "Art.º 44º",
-                "epigrafe": "Enriquecimento sem causa",
-                "paragrafos": [
-                  "O enriquecimento sem causa é regulado pela lei com base na qual se verificou a transferência do valor patrimonial a favor do enriquecido."
-                ]
-              },
-              {
-                "numero": "Art.º 45º",
-                "epigrafe": "Responsabilidade extracontratual",
-                "paragrafos": [
-                  "A responsabilidade extracontratual fundada, quer em acto ilícito, quer no risco ou em qualquer conduta lícita, é regulada pela lei do Estado onde decorreu a principal actividade causadora do prejuízo; em caso de responsabilidade por omissão, é aplicável a lei do lugar onde o responsável deveria ter agido.",
-                  "Se a lei do Estado onde se produziu o efeito lesivo considerar responsável o agente, mas não o considerar como tal a lei do país onde decorreu a sua actividade, é aplicável a primeira lei, desde que o agente devesse prever a produção de um dano, naquele país, como consequência do seu acto ou omissão.",
-                  "Se, porém, o agente e o lesado tiverem a mesma nacionalidade ou, na falta dela, a mesma residência habitual, e se encontrarem ocasionalmente em país estrangeiro, a lei aplicável será a da nacionalidade ou a da residência comum, sem prejuízo das disposições do Estado local que devam ser aplicadas indistintamente a todas as pessoas."
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Subsecção IV - Lei reguladora das coisas",
-            "artigos": [
-              {
-                "numero": "Art.º 46º",
-                "epigrafe": "Direitos reais",
-                "paragrafos": [
-                  "O regime da posse, propriedade e demais direitos reais, é definido pela lei do Estado em cujo território as coisas se encontrem situadas.",
-                  "Em tudo quanto respeita a constituição ou transferência de direitos reais sobre coisas em trânsito, são estas havidas como situadas no país do destino.",
-                  "A constituição e transferência de direitos sobre os meios de transportes submetidos a um regime de matrícula são reguladas pela lei do país onde a matrícula tiver sido efectuada."
-                ]
-              },
-              {
-                "numero": "Art.º 47º",
-                "epigrafe": "Capacidade para constituir direitos reais sobre coisas imóveis ou dispor deles",
-                "paragrafos": [
-                  "É igualmente definida pela lei da situação da coisa a capacidade para constituir direitos reais sobre coisas imóveis ou para dispor deles, desde que essa lei assim o determine; de contrário, é aplicável a lei pessoal."
-                ]
-              },
-              {
-                "numero": "Art.º 48º",
-                "epigrafe": "Propriedade intelectual",
-                "paragrafos": [
-                  "Os direitos de autor são regulados pela lei do lugar da primeira publicação da obra e, não estando esta publicada, pela lei pessoal do autor, sem prejuízo do disposto em legislação especial.",
-                  "A propriedade industrial é regulada pela lei do país da sua criação."
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Subsecção V - Lei reguladora das relações de família",
-            "artigos": [
-              {
-                "numero": "Art.º 49º",
-                "epigrafe": "Capacidade para contrair casamento ou celebrar convenções antenupciais",
-                "paragrafos": [
-                  "A capacidade para contrair casamento ou celebrar a convenção antenupcial é regulada, em relação a cada nubente, pela respectiva lei pessoal, à qual compete ainda definir o regime da falta e dos vícios da vontade dos contraentes."
-                ]
-              "artigos": [
-              {
-                "numero": "Art.º 49º",
-                "epigrafe": "Capacidade para contrair casamento ou celebrar convenções antenupciais",
-                "paragrafos": [
-                  "A capacidade para contrair casamento ou celebrar a convenção antenupcial é regulada, em relação a cada nubente, pela respectiva lei pessoal, à qual compete ainda definir o regime da falta e dos vícios da vontade dos contraentes."
-                ]
-              },
-              {
-                "numero": "Art.º 50º",
-                "epigrafe": "Forma do casamento",
-                "paragrafos": [
-                  "A forma do casamento é regulada pela lei do Estado em que o acto é celebrado, salvo o disposto no artigo seguinte."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-        {
-  "livro": "Livro I",
-  "titulo": {
-    "nome": "Título I - Das leis, sua interpretação e aplicação",
-    "capitulos": [
-      {
-        "nome": "Capítulo III - Direitos dos estrangeiros e conflitos de leis",
-        "seccoes": [
-          {
-            "nome": "Subsecção V - Lei reguladora das relações de família",
-            "artigos": [
-              {
-                "numero": "Art.º 51º",
-                "epigrafe": "Desvios",
-                "paragrafos": [
-                  "O casamento de dois estrangeiros em Portugal pode ser celebrado segundo a forma prescrita na lei nacional de qualquer dos contraentes, perante os respectivos agentes diplomáticos ou consulares, desde que igual competência seja reconhecida por essa lei aos agentes diplomáticos e consulares portugueses.",
-                  "O casamento no estrangeiro de dois portugueses ou de português e estrangeiro pode ser celebrado perante o agente diplomático ou consular do Estado português ou perante os ministros do culto católico; em qualquer caso, o casamento deve ser precedido do processo de publicações, organizado pela entidade competente, a menos que ele seja dispensado nos termos do artigo 1599º.",
-                  "O casamento no estrangeiro de dois portugueses ou de português e estrangeiro, em harmonia com as leis canónicas, é havido como casamento católico, seja qual for a forma legal da celebração do acto segundo a lei local, e à sua transcrição servirá de base o assento do registo paroquial."
-                ]
-              },
-              {
-                "numero": "Art.º 52º",
-                "epigrafe": "Relações entre os cônjuges",
-                "paragrafos": [
-                  "Salvo o disposto no artigo seguinte, as relações entre os cônjuges são reguladas pela lei nacional comum.",
-                  "Não tendo os cônjuges a mesma nacionalidade, é aplicável a lei da sua residência habitual comum e, na falta desta, a lei do país com o qual a vida familiar se ache mais estreitamente conexa.(1)"
-                ]
-              },
-              {
-                "numero": "Art.º 53º",
-                "epigrafe": "Convenções antenupciais e regime de bens",
-                "paragrafos": [
-                  "A substância e efeitos das convenções antenupciais e do regime de bens, legal ou convencional, são definidos pela lei nacional dos nubentes ao tempo da celebração do casamento.",
-                  "Não tendo os nubentes a mesma nacionalidade, é aplicável a lei da sua residência habitual comum à data do casamento e, se esta faltar também, a lei da primeira residência conjugal.",
-                  "Se for estrangeira a lei aplicável e um dos nubentes tiver a sua residência habitual em território português, pode ser convencionado um dos regimes admitidos neste código.(1)"
-                ]
-              },
-              {
-                "numero": "Art.º 54º",
-                "epigrafe": "Modificações do regime de bens",
-                "paragrafos": [
-                  "Aos cônjuges é permitido modificar o regime de bens, legal ou convencional, se a tal forem autorizados pela lei competente nos termos do artigo 52º.",
-                  "A nova convenção em caso nenhum terá efeito retroactivo em prejuízo de terceiro."
-                ]
-              },
-              {
-                "numero": "Art.º 55º",
-                "epigrafe": "Separação judicial de pessoas e bens e divórcio",
-                "paragrafos": [
-                  "À separação judicial de pessoas e bens e ao divórcio é aplicável o disposto no artigo 52º.",
-                  "Se, porém, na constância do matrimónio houver mudança da lei competente, só pode fundamentar a separação ou o divórcio algum facto relevante ao tempo da sua verificação."
-                ]
-              },
-              {
-                "numero": "Art.º 56º",
-                "epigrafe": "Constituição da filiação",
-                "paragrafos": [
-                  "À constituição da filiação é aplicável à lei pessoal do progenitor à data do estabelecimento da relação.",
-                  "Tratando-se de filho de mulher casada, a constituição da filiação relativamente ao pai é regulada pela lei nacional comum da mãe e do marido; na falta desta, é aplicável a lei da residência habitual comum dos cônjuges e, se esta também faltar, a lei pessoal do filho."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-{
-  "livro": "Livro I",
-  "titulo": {
-    "nome": "Título I - Das leis, sua interpretação e aplicação",
-    "capitulos": [
-      {
-        "nome": "Capítulo III - Direitos dos estrangeiros e conflitos de leis",
-        "seccoes": [
-          {
-            "nome": "Subsecção V - Lei reguladora das relações de família",
-            "artigos": [
-              {
-                "numero": "Art.º 56º",
-                "epigrafe": "Constituição da filiação",
-                "paragrafos": [
-                  "À constituição da filiação é aplicável à lei pessoal do progenitor à data do estabelecimento da relação.",
-                  "Tratando-se de filho de mulher casada, a constituição da filiação relativamente ao pai é regulada pela lei nacional comum da mãe e do marido; na falta desta, é aplicável a lei da residência habitual comum dos cônjuges e, se esta também faltar, a lei pessoal do filho.",
-                  "Para os efeitos do número anterior, atender-se-á ao momento do nascimento do filho ou ao momento da dissolução do casamento, se for anterior ao nascimento.(1)"
-                ]
-              },
-              {
-                "numero": "Art.º 57º",
-                "epigrafe": "Relações entre pais e filhos",
-                "paragrafos": [
-                  "As relações entre pais e filhos são reguladas pela lei nacional comum dos pais e, na falta desta, pela lei da sua residência habitual comum; se os pais residirem habitualmente em Estados diferentes, é aplicável a lei pessoal do filho.",
-                  "Se a filiação apenas se achar estabelecida relativamente a um dos progenitores, aplica-se a lei pessoal deste; se um dos progenitores tiver falecido, é competente a lei pessoal do sobrevivo.(1)"
-                ]
-              },
-              {
-                "numero": "Art.º 58º",
-                "epigrafe": "Revogado",
-                "observacao": "Revogado pelo DL nº 496/77, de 25/11"
-              },
-              {
-                "numero": "Art.º 59º",
-                "epigrafe": "Revogado",
-                "observacao": "Revogado pelo DL nº 496/77, de 25/11"
-              },
-              {
-                "numero": "Art.º 60º",
-                "epigrafe": "Filiação adoptiva",
-                "paragrafos": [
-                  "À constituição da filiação adoptiva é aplicável a lei pessoal do adoptante, sem prejuízo do disposto no número seguinte.",
-                  "Se a adopção for realizada por marido e mulher ou o adoptando for filho do cônjuge do adoptante, é competente a lei nacional comum dos cônjuges e, na falta desta, a lei da sua residência habitual comum; se também esta faltar, será aplicável a lei do país com o qual a vida familiar dos adoptantes se ache mais estreitamente conexa.",
-                  "As relações entre adoptante e adoptado, e entre este e a família de origem, estão sujeitas à lei pessoal do adoptante; no caso previsto no número anterior é aplicável o disposto no artigo 57º.",
-                  "Se a lei competente para regular as relações entre o adoptando e os seus progenitores não conhecer o instituto da adopção, ou não o admitir em relação a quem se encontre na situação familiar do adoptando, a adopção não é permitida.(1)"
-                ]
-              },
-              {
-                "numero": "Art.º 61º",
-                "epigrafe": "Requisitos especiais da perfilhação ou adopção",
-                "paragrafos": [
-                  "Se, como requisito da perfilhação ou adopção, a lei pessoal do perfilhando ou adoptando exigir o consentimento deste, será a exigência respeitada.(1)",
-                  "Será igualmente respeitada a exigência do consentimento de terceiro a quem o interessado esteja ligado por qualquer relação jurídica de natureza familiar ou tutelar, se provier da lei reguladora desta relação."
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Subsecção VI - Lei reguladora das sucessões",
-            "artigos": [
-              {
-                "numero": "Art.º 62º",
-                "epigrafe": "Lei competente",
-                "paragrafos": [
-                  "A sucessão por morte é regulada pela lei pessoal do autor da sucessão ao tempo do falecimento deste, competindo-lhe também definir os poderes do administrador da herança e do executor testamentário."
-                ]
-              },
-              {
-                "numero": "Art.º 63º",
-                "epigrafe": "Capacidade de disposição",
-                "paragrafos": [
-                  "Se, como requisito da perfilhação ou adopção, a lei pessoal do perfilhando ou adoptando exigir o consentimento deste, será a exigência respeitada.(1)",
-                  "Será igualmente respeitada a exigência do consentimento de terceiro a quem o interessado esteja ligado por qualquer relação jurídica de natureza familiar ou tutelar, se provier da lei reguladora desta relação."
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Subsecção VI - Lei reguladora das sucessões",
-            "artigos": [
-              {
-                "numero": "Art.º 62º",
-                "epigrafe": "Lei competente",
-                "paragrafos": [
-                  "A sucessão por morte é regulada pela lei pessoal do autor da sucessão ao tempo do falecimento deste, competindo-lhe também definir os poderes do administrador da herança e do executor testamentário."
-                ]
-              },
-              {
-                "numero": "Art.º 63º",
-                "epigrafe": "Capacidade de disposição",
-                "paragrafos": [ "paragrafos": [
-                  "A capacidade para fazer, modificar ou revogar uma disposição por morte, bem como as exigências da forma especial das disposições por virtude da idade do disponente, são reguladas pela lei pessoal do autor ao tempo da declaração.",
-                  "Aquele que, depois de ter feito a disposição, adquirir nova lei pessoal conserva a capacidade necessária para revogar a disposição nos termos da lei anterior."
-                ]
-              },
-              {
-                "numero": "Art.º
-                  "A capacidade para fazer, modificar ou revogar uma disposição por morte, bem como as exigências da forma especial das disposições por virtude da idade do disponente, são reguladas pela lei pessoal do autor ao tempo da declaração.",
-                  "Aquele que, depois de ter feito a disposição, adquirir nova lei pessoal conserva a capacidade necessária para revogar a disposição nos termos da lei anterior."
-                ]
-              },
-              {
-                "numero": "Art.º 64º",
-                64º",
-                "epigrafe": "Interpretação das disposições; falta e vícios da vontade",
-                " "epigrafe": "Interpretação das disposições; falta e vícios da vontade",
-                "paragrafos": [
-                  "É a lei pessoal do autor da herança ao tempo da declaração que regula:",
-                  "a) A interpretação das respectivas cláusulas e disposições, salvo se houver referência ..."
-                ]
-             paragrafos": [
-                  "É a lei pessoal do autor da herança ao tempo da declaração que regula:",
-                  "a) A interpretação das respectivas cláusulas e disposições, salvo se houver referência ..."
-                ]
-              }
-            ]
-          }
-        }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-

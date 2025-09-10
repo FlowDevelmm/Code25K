@@ -6,6 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useTheme } from '../ThemeContext';
 import { MaterialIcons } from '@expo/vector-icons';
 import { codigoCivil, Artigo } from '../data';
+import app from '../../app.json';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -339,7 +340,7 @@ export default function MainScreen() {
         </View>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Versão 1.0.0</Text>
+          <Text style={styles.footerText}>Versão {app.expo.version}</Text>
           <Text style={styles.footerText}>Desenvolvido pela Learn_Code</Text>
         </View>
       </ScrollView>

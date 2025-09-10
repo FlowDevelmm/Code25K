@@ -10,10 +10,27 @@ import { AntDesign } from '@expo/vector-icons';
 export default function ArtigosScreen() {
   const { colors } = useTheme();
   const styles = getStyles(colors);
-  const { livroIndex, tituloIndex, capituloIndex } = useLocalSearchParams<{ livroIndex: string; tituloIndex: string; capituloIndex: string }>();
+  const { livroIndex, tituloIndex, capituloIndex, secaoIndex, subsecaoIndex } = useLocalSearchParams<{ livroIndex: string; tituloIndex: string; capituloIndex: string; secaoIndex?: string; subsecaoIndex?: string }>();
   const livro = codigoCivil[parseInt(livroIndex)];
   const titulo = livro?.titulos[parseInt(tituloIndex)];
   const capitulo = titulo?.capitulos[parseInt(capituloIndex)];
+  
+  let items = [];
+  let screenTitle = capitulo?.nome || 'Artigos';
+
+  if (secaoIndex !== undefined) {
+    const secao = capitulo?.secoes[parseInt(secaoIndex)];
+    screenTitle = secao?.nome || screenTitle;
+    if (subsecaoIndex !== undefined) {
+      const subsecao = secao?.subsecoes[parseInt(subsecaoIndex)];
+      items = subsecao?.artigos || [];
+      screenTitle = subsecao?.nome || screenTitle;
+    } else {
+      items = secao?.artigos || [];
+    }
+  } else {
+    items = capitulo?.artigos || [];
+  }
 
   const [favoritedArticles, setFavoritedArticles] = useState<string[]>([]);
 
@@ -47,19 +64,19 @@ export default function ArtigosScreen() {
     }
   };
 
-  if (!capitulo) {
+  if (!items) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.errorText}>Capítulo não encontrado.</Text>
+        <Text style={styles.errorText}>Nenhum artigo encontrado.</Text>
       </SafeAreaView>
     );
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: capitulo.nome, headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
+      <Stack.Screen options={{ title: screenTitle, headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
       <FlatList
-        data={capitulo.artigos || []}
+        data={items}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
