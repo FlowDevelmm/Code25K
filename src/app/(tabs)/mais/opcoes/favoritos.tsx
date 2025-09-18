@@ -9,7 +9,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, Stack } from 'expo-router';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { useTheme } from '../ThemeContext';
+import { useTheme } from '../../../../ThemeContext';
 
 export default function FavoritosScreen() {
   const { colors } = useTheme();

@@ -1,32 +1,30 @@
-import React from "react";
-import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
-import { Link, useLocalSearchParams, Stack } from "expo-router";
-import { useTheme } from "../ThemeContext";
-import { codigoCivil } from "../data";
+import React from 'react';
+import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Link, Stack } from 'expo-router';
+import { useTheme } from '../../../ThemeContext';
+import { codigoCivil } from '../../../data';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function TitulosScreen() {
+export default function LivrosScreen() {
   const { colors } = useTheme();
   const styles = getStyles(colors);
-  const { livroIndex } = useLocalSearchParams<{ livroIndex: string }>();
-  const livro = codigoCivil[parseInt(livroIndex)];
-
-  if (!livro) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.itemText}>Livro não encontrado.</Text>
-      </SafeAreaView>
-    );
-  }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: livro.nome, headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
+      <Stack.Screen 
+        options={{
+          title: 'Codigo', 
+          headerStyle: { backgroundColor: colors.card }, 
+          headerTintColor: colors.text, 
+          headerTitleStyle: { fontWeight: '700' },
+          headerTitleAlign: 'center'
+        }}
+      />
       <FlatList
-        data={livro.titulos}
+        data={codigoCivil}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index: tituloIndex }) => (
-          <Link href={{ pathname: "/capitulos", params: { livroIndex, tituloIndex } }} asChild>
+        renderItem={({ item, index }) => (
+          <Link href={{ pathname: '/codigo/titulos', params: { livroIndex: index } }} asChild>
             <TouchableOpacity style={styles.itemContainer}>
               <Text style={styles.itemText}>{item.nome}</Text>
               <MaterialIcons name="chevron-right" size={24} color={colors.text} />

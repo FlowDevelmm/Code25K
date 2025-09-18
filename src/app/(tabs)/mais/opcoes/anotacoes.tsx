@@ -15,7 +15,7 @@ import { useFocusEffect, Stack } from 'expo-router';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { RichEditor, RichToolbar, actions } from 'react-native-pell-rich-editor';
 import RenderHTML from 'react-native-render-html';
-import { useTheme } from '../ThemeContext';
+import { useTheme } from '../../../../ThemeContext';
 
 interface Note {
   id: string;
@@ -63,7 +63,7 @@ export default function AnotacoesScreen() {
 
   const handleSaveNote = async () => {
     const html = await richText.current?.getContentHtml();
-    if (!html || html.trim() === '<p><br></p>' || html.trim().length === 0) {
+    if (!html || html.trim() === '' || html.trim() === '<p><br></p>') {
       Alert.alert('Atenção', 'Você não pode salvar uma anotação vazia.');
       return;
     }

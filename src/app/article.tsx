@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useTheme } from '../ThemeContext';
 
-const normalize = (size) => size; // This should be replaced with the global normalize function if needed
+import { normalize } from '../utils/normalize';
 
 const getStyles = (colors) => StyleSheet.create({
   container: {

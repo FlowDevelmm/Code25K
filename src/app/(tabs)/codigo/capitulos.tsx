@@ -2,8 +2,8 @@
 import React from 'react';
 import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Link, useLocalSearchParams, Stack } from 'expo-router';
-import { useTheme } from '../ThemeContext';
-import { codigoCivil } from '../data';
+import { useTheme } from '../../../ThemeContext';
+import { codigoCivil } from '../../../data';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function CapitulosScreen() {
@@ -28,7 +28,7 @@ export default function CapitulosScreen() {
         data={titulo.capitulos}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index: capituloIndex }) => {
-          const pathname = item.secoes && item.secoes.length > 0 ? '/secoes' : '/artigos';
+          const pathname = item.secoes && item.secoes.length > 0 ? '/codigo/secoes' : '/codigo/artigos';
           return (
             <Link href={{ pathname, params: { livroIndex, tituloIndex, capituloIndex } }} asChild>
               <TouchableOpacity style={styles.itemContainer}>

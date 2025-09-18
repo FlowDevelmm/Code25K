@@ -1,29 +1,32 @@
-
-import React from 'react';
-import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { Link, Stack } from 'expo-router';
-import { useTheme } from '../ThemeContext';
-import { codigoCivil } from '../data';
+import React from "react";
+import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import { Link, useLocalSearchParams, Stack } from "expo-router";
+import { useTheme } from '../../../ThemeContext';
+import { codigoCivil } from '../../../data';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function LivrosScreen() {
+export default function TitulosScreen() {
   const { colors } = useTheme();
   const styles = getStyles(colors);
+  const { livroIndex } = useLocalSearchParams<{ livroIndex: string }>();
+  const livro = codigoCivil[parseInt(livroIndex)];
+
+  if (!livro) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.itemText}>Livro não encontrado.</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen 
-        options={{
-          title: 'Livros', 
-          headerStyle: { backgroundColor: colors.card }, 
-          headerTintColor: colors.text 
-        }}
-      />
+      <Stack.Screen options={{ title: livro.nome, headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
       <FlatList
-        data={codigoCivil}
+        data={livro.titulos}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => (
-          <Link href={{ pathname: '/titulos', params: { livroIndex: index } }} asChild>
+        renderItem={({ item, index: tituloIndex }) => (
+          <Link href={{ pathname: "/codigo/capitulos", params: { livroIndex, tituloIndex } }} asChild>
             <TouchableOpacity style={styles.itemContainer}>
               <Text style={styles.itemText}>{item.nome}</Text>
               <MaterialIcons name="chevron-right" size={24} color={colors.text} />
