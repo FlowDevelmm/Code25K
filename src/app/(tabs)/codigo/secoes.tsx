@@ -1,5 +1,6 @@
 import React from 'react';
-import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, useLocalSearchParams, Stack } from 'expo-router';
 import { useTheme } from '../../../ThemeContext';
 import { codigoCivil } from '../../../data';

@@ -1,5 +1,6 @@
 import React from "react";
-import { SafeAreaView, Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, useLocalSearchParams, Stack } from "expo-router";
 import { useTheme } from '../../../ThemeContext';
 import { codigoCivil } from '../../../data';
@@ -21,7 +22,7 @@ export default function TitulosScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: livro.nome, headerStyle: { backgroundColor: 'transparent', elevation: 0, shadowOpacity: 0, borderBottomWidth: 0 }, headerTintColor: colors.text }} />
+      <Stack.Screen options={{ title: "Títulos", headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
       <FlatList
         data={livro.titulos}
         keyExtractor={(item, index) => index.toString()}

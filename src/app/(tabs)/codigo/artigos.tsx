@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, Text, View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, useLocalSearchParams, Stack } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../../../ThemeContext';

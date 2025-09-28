@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { View, FlatList, StyleSheet, Pressable } from 'react-native';
+import { View, FlatList, StyleSheet, Pressable, TouchableOpacity, ScrollView } from 'react-native';
 import { Appbar, Searchbar, Text } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import { useTheme } from '../../ThemeContext';
 import { codigoCivil, Artigo } from '../../data';
 import { normalize } from '../../utils/normalize';
+import { MaterialIcons } from '@expo/vector-icons';
 
 interface SearchResult extends Artigo {
   path: string;
@@ -95,6 +96,27 @@ export default function PesquisaScreen() {
         opacity: 0.7,
         marginTop: normalize(4)
     },
+    filterContainer: {
+      flexDirection: 'row',
+      marginHorizontal: normalize(10),
+      marginBottom: normalize(10),
+      width: '100%',
+    },
+
+    filterButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingVertical: normalize(8),
+      paddingHorizontal: normalize(12),
+      borderRadius: normalize(20),
+      backgroundColor: colors.card,
+    },
+    filterButtonText: {
+      fontFamily: 'SF-Pro-Display-Regular',
+      fontSize: normalize(14),
+      color: colors.text,
+      marginLeft: normalize(5),
+    },
   });
 
   return (
@@ -109,18 +131,43 @@ export default function PesquisaScreen() {
         style={styles.searchbar}
         autoFocus
       />
+      <View style={[styles.filterContainer, { flexWrap: 'wrap' }]}>
+        <TouchableOpacity style={styles.filterButton}>
+          <MaterialIcons name="book" size={normalize(18)} color={colors.text} />
+          <Text style={styles.filterButtonText}>Livro</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.filterButton}>
+          <MaterialIcons name="bookmark" size={normalize(18)} color={colors.text} />
+          <Text style={styles.filterButtonText}>Titulo</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.filterButton}>
+          <MaterialIcons name="menu-book" size={normalize(18)} color={colors.text} />
+          <Text style={styles.filterButtonText}>Glossário</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.filterButton}>
+          <MaterialIcons name="list" size={normalize(18)} color={colors.text} />
+          <Text style={styles.filterButtonText}>Capitulo</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={searchResults}
-        keyExtractor={(item) => item.nome}
-        renderItem={({ item }) => (
-          <Pressable
-            style={styles.resultItem}
-            onPress={() => router.push({ pathname: '/article', params: { nome: item.nome, texto: item.texto, path: item.path } })}
-          >
-            <Text style={styles.resultTitle}>{item.nome}</Text>
-            <Text style={styles.resultPath}>{item.path}</Text>
-          </Pressable>
-        )}
+        keyExtractor={(item, index) => item.nome || index.toString()}
+        renderItem={({ item }) => {
+          if (!item) {
+            console.log("FlatList item is undefined or null");
+            return null;
+          }
+          console.log("Rendering item:", item);
+          return (
+            <Pressable
+              style={styles.resultItem}
+              onPress={() => router.push({ pathname: '/article', params: { nome: item.nome, texto: item.texto, path: item.path } })}
+            >
+              <Text style={styles.resultTitle}>{item.nome || 'Nome Indisponível'}</Text>
+              <Text style={styles.resultPath}>{item.path || 'Caminho Indisponível'}</Text>
+            </Pressable>
+          );
+        }}
       />
     </View>
   );
