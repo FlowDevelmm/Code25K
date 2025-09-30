@@ -1,10 +1,14 @@
 import { ThemeProvider } from '../ThemeContext';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+// Impede que a tela de splash desapareça automaticamente
+void SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     'SF-Pro-Display-Black-Italic': require('../../assets/fonts/sfprodisplayblackitalic.otf'),
     'SF-Pro-Display-Bold': require('../../assets/fonts/sfprodisplaybold.otf'),
     'SF-Pro-Display-Heavy-Italic': require('../../assets/fonts/sfprodisplayheavyitalic.otf'),
@@ -16,7 +20,15 @@ export default function RootLayout() {
     'SF-Pro-Display-Ultralight-Italic': require('../../assets/fonts/sfprodisplayultralightitalic.otf'),
   });
 
-  if (!fontsLoaded) {
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      // Esconde a tela de splash quando as fontes estiverem carregadas ou se houver um erro
+      void SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    // Retorna nulo apenas enquanto as fontes estão carregando e não há erro
     return null;
   }
 

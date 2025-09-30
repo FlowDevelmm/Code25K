@@ -1,6 +1,14 @@
-
 import { Stack } from 'expo-router';
 
-export default function MaisStack() {
-  return <Stack screenOptions={{ headerShown: false, presentation: 'modal' }} />;
+export default function MaisLayout() {
+  return (
+    <Stack>
+      <Stack.Screen
+        name="index"
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack>
+  );
 }
