@@ -28,17 +28,14 @@ export default function CapitulosScreen() {
       <FlatList
         data={titulo.capitulos}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index: capituloIndex }) => {
-          const pathname = item.secoes && item.secoes.length > 0 ? '/codigo/secoes' : '/codigo/artigos';
-          return (
-            <Link href={{ pathname, params: { livroIndex, tituloIndex, capituloIndex } }} asChild>
-              <TouchableOpacity style={styles.itemContainer}>
-                <Text style={styles.itemText}>{item.nome}</Text>
-                <MaterialIcons name="chevron-right" size={24} color={colors.text} />
-              </TouchableOpacity>
-            </Link>
-          );
-        }}
+        renderItem={({ item, index: capituloIndex }) => (
+          <Link href={{ pathname: "/codigo/CapituloDetail", params: { livroIndex, tituloIndex, capituloIndex } }} asChild>
+            <TouchableOpacity style={styles.itemContainer}>
+              <Text style={styles.itemText}>{item.nome}</Text>
+              <MaterialIcons name="chevron-right" size={24} color={colors.text} />
+            </TouchableOpacity>
+          </Link>
+        )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
     </SafeAreaView>

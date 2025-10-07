@@ -8,7 +8,10 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "assetBundlePatterns": ["**/*", "./assets/fonts/*"],
+    "assetBundlePatterns": [
+      "**/*",
+      "./assets/fonts/*"
+    ],
     "splash": {
       "image": "./assets/images/splash-icon.jpg",
       "resizeMode": "contain",
@@ -22,7 +25,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.jpg",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.mundlovo.myapp"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +38,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c5ca6125-ea11-4e93-843d-5616dcb02b35"
+      }
     }
   }
 }

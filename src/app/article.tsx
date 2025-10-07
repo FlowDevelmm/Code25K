@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useTheme } from '../ThemeContext';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useFavoriteArticles } from '../hooks/useFavoriteArticles';
 
 import { normalize } from '../utils/normalize';
 
@@ -37,13 +39,31 @@ const getStyles = (colors) => StyleSheet.create({
 
 const ArticleScreen = () => {
   const { colors } = useTheme();
+  const { addFavoriteArticle, removeFavoriteArticle, isFavoriteArticle } = useFavoriteArticles();
   const styles = getStyles(colors);
   const { nome, texto, path } = useLocalSearchParams();
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={styles.container}>
-        <Text style={styles.title}>{nome}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Text style={styles.title}>{nome}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              if (isFavoriteArticle(nome as string)) {
+                removeFavoriteArticle(nome as string);
+              } else {
+                addFavoriteArticle(nome as string);
+              }
+            }}
+          >
+            <MaterialCommunityIcons
+              name={isFavoriteArticle(nome as string) ? 'heart' : 'heart-outline'}
+              size={24}
+              color={isFavoriteArticle(nome as string) ? colors.primary : colors.text}
+            />
+          </TouchableOpacity>
+        </View>
         <Text style={styles.path}>{path}</Text>
         <Text style={styles.text}>{texto}</Text>
       </View>

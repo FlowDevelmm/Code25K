@@ -1,11 +1,38 @@
-import { ThemeProvider } from '../ThemeContext';
+import { ThemeProvider, useTheme } from '../ThemeContext';
 import React, { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useFavoriteArticles } from '../hooks/useFavoriteArticles';
 
 // Impede que a tela de splash desapareça automaticamente
 void SplashScreen.preventAutoHideAsync();
+
+const ArticleHeaderRight = ({ articleName }: { articleName: string }) => {
+  const { favoriteArticles, addFavoriteArticle, removeFavoriteArticle } = useFavoriteArticles();
+  const { colors } = useTheme();
+  const isFavorite = favoriteArticles.includes(articleName);
+
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      removeFavoriteArticle(articleName);
+    } else {
+      addFavoriteArticle(articleName);
+    }
+  };
+
+  return (
+    <TouchableOpacity onPress={toggleFavorite} style={{ marginRight: 16 }}>
+      <Ionicons
+        name={isFavorite ? 'star' : 'star-outline'}
+        size={24}
+        color={isFavorite ? colors.primary : colors.text}
+      />
+    </TouchableOpacity>
+  );
+};
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -36,7 +63,13 @@ export default function RootLayout() {
     <ThemeProvider>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="article" options={{ headerShown: false }} />
+        <Stack.Screen 
+          name="article" 
+          options={({ route }) => ({
+            title: route.params.nome as string,
+            headerRight: () => <ArticleHeaderRight articleName={route.params.nome as string} />,
+          })}
+        />
       </Stack>
     </ThemeProvider>
   );

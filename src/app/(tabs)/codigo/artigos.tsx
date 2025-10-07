@@ -5,7 +5,9 @@ import { Link, useLocalSearchParams, Stack } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../../../ThemeContext';
 import { codigoCivil, Artigo } from '../../../data';
-import { AntDesign } from '@expo/vector-icons';
+import { useFavoriteArticles } from '../../../hooks/useFavoriteArticles';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { normalize } from '../../../utils/normalize';
 
 const getArtigosData = (
   livroIndex: string,
@@ -51,42 +53,15 @@ export default function ArtigosScreen() {
     params.subsecaoIndex
   );
 
-  const [favoritedArticles, setFavoritedArticles] = useState<string[]>([]);
-
-  useEffect(() => {
-    const loadFavoritedArticles = async () => {
-      try {
-        const storedFavorites = await AsyncStorage.getItem('favoritedArticles');
-        if (storedFavorites !== null) {
-          setFavoritedArticles(JSON.parse(storedFavorites));
-        }
-      } catch (error) {
-        console.error('Failed to load favorited articles.', error);
-      }
-    };
-    loadFavoritedArticles();
-  }, []);
-
-  const toggleFavorite = async (articleName: string) => {
-    let newFavorites = [...favoritedArticles];
-    if (newFavorites.includes(articleName)) {
-      newFavorites = newFavorites.filter((name) => name !== articleName);
-    } else {
-      newFavorites.push(articleName);
-    }
-    setFavoritedArticles(newFavorites);
-    try {
-      await AsyncStorage.setItem('favoritedArticles', JSON.stringify(newFavorites));
-    } catch (error) {
-      console.error('Failed to save favorited articles.', error);
-    }
-  };
+  const { favoriteArticles, addFavoriteArticle, removeFavoriteArticle, isFavoriteArticle } = useFavoriteArticles();
 
   if (!items || items.length === 0) {
     return (
       <SafeAreaView style={styles.container}>
-        <Stack.Screen options={{ title: 'Código', headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
-        <Text style={styles.errorText}>Nenhum artigo encontrado.</Text>
+        <View>
+          <Stack.Screen options={{ title: 'Código', headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text, headerTitleStyle: { fontSize: normalize(18) } }} />
+          <Text style={styles.errorText}>Nenhum artigo encontrado.</Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -106,13 +81,17 @@ export default function ArtigosScreen() {
                   onPress={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    toggleFavorite(item.nome);
+                    if (isFavoriteArticle(item.nome)) {
+                      removeFavoriteArticle(item.nome);
+                    } else {
+                      addFavoriteArticle(item.nome);
+                    }
                   }}
                 >
-                  <AntDesign
-                    name={favoritedArticles.includes(item.nome) ? 'star' : 'staro'}
+                  <MaterialCommunityIcons
+                    name={isFavoriteArticle(item.nome) ? 'heart' : 'heart-outline'}
                     size={24}
-                    color={favoritedArticles.includes(item.nome) ? colors.primary : colors.text}
+                    color={isFavoriteArticle(item.nome) ? colors.primary : colors.text}
                   />
                 </TouchableOpacity>
               </View>
@@ -131,33 +110,33 @@ const getStyles = (colors) => StyleSheet.create({
     backgroundColor: colors.background,
   },
   itemContainer: {
-    padding: 16,
+    padding: normalize(16),
     backgroundColor: colors.card,
   },
   itemHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: normalize(8),
   },
   artigoNome: {
     fontFamily: 'SF-Pro-Display-Bold',
-    fontSize: 18,
-    lineHeight: 18 * 1.5,
+    fontSize: normalize(18),
+    lineHeight: normalize(18) * 1.5,
     color: colors.text,
     flex: 1,
   },
   
   separator: {
-    height: 1,
+    height: normalize(1),
     backgroundColor: colors.border,
   },
   errorText: {
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: normalize(20),
     fontFamily: 'SF-Pro-Display-Regular',
-    fontSize: 18,
-    lineHeight: 18 * 1.5,
+    fontSize: normalize(18),
+    lineHeight: normalize(18) * 1.5,
     color: colors.text,
   },
 });

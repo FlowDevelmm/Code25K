@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Appbar } from 'react-native-paper';
-import { Link, Stack } from 'expo-router';
+import { Link } from 'expo-router';
 import { useTheme } from '../../../ThemeContext';
 import { codigoCivil } from '../../../data';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { normalize } from '../../../utils/normalize';
 
 export default function LivrosScreen() {
@@ -17,19 +17,16 @@ export default function LivrosScreen() {
       <Appbar.Header style={styles.header}>
         <Appbar.Content title="Código" titleStyle={styles.title} />
       </Appbar.Header>
-      <FlatList
-        data={codigoCivil}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => (
-          <Link href={{ pathname: '/codigo/titulos', params: { livroIndex: index } }} asChild>
-            <TouchableOpacity style={styles.itemContainer}>
-              <Text style={styles.itemText}>{item.nome}</Text>
-              <MaterialIcons name="chevron-right" size={24} color={colors.text} />
+      <ScrollView contentContainerStyle={styles.gridContainer}>
+        {codigoCivil.map((livro, index) => (
+          <Link key={index} href={{ pathname: '/codigo/titulos', params: { livroIndex: index } }} asChild>
+            <TouchableOpacity style={styles.bookItem}>
+              <MaterialCommunityIcons name="book-open-variant" size={normalize(60)} color={colors.primary} />
+              <Text style={styles.bookTitle}>{livro.nome}</Text>
             </TouchableOpacity>
           </Link>
-        )}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
-      />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -50,23 +47,34 @@ const getStyles = (colors) => StyleSheet.create({
     paddingHorizontal: normalize(16),
     paddingVertical: normalize(12),
   },
-  title: { fontFamily: 'SF-Pro-Display-Bold', fontSize: normalize(22), lineHeight: normalize(22) * 1.5, color: colors.text, textAlign: 'center' },
-  itemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: colors.card,
-  },
-  itemText: {
-    fontFamily: 'SF-Pro-Display-Regular',
-    fontSize: 18,
-    lineHeight: 18 * 1.5,
+  title: {
+    fontFamily: 'SF-Pro-Display-Bold',
+    fontSize: normalize(22),
+    lineHeight: normalize(22) * 1.5,
     color: colors.text,
+    textAlign: 'center'
   },
-  separator: {
-    height: 1,
-    backgroundColor: colors.border,
-    marginLeft: 16,
+  gridContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    padding: normalize(10),
+  },
+  bookItem: {
+    width: '45%',
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    margin: normalize(5),
+    padding: normalize(10),
+  },
+  bookTitle: {
+    fontFamily: 'SF-Pro-Display-Bold',
+    fontSize: normalize(16),
+    color: colors.text,
+    marginTop: normalize(10),
+    textAlign: 'center',
   },
 });

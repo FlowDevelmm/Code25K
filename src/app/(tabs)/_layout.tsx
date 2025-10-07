@@ -1,14 +1,17 @@
 import { Tabs } from "expo-router";
 import { Feather } from "@expo/vector-icons";
+import { useTheme } from "../../ThemeContext";
 
 export default function TabLayout() {
+  const { colors } = useTheme();
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "#F8F8F8",
+          backgroundColor: colors.card,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           height: 70,
@@ -31,7 +34,7 @@ export default function TabLayout() {
             <Feather
               name="home"
               size={28}
-              color={focused ? "#007AFF" : "#4A4A4A"}
+              color={focused ? colors.primary : colors.textSecondary}
             />
           ),
         }}
@@ -43,7 +46,7 @@ export default function TabLayout() {
             <Feather
               name="book"
               size={28}
-              color={focused ? "#007AFF" : "#4A4A4A"}
+              color={focused ? colors.primary : colors.textSecondary}
             />
           ),
         }}
@@ -55,7 +58,7 @@ export default function TabLayout() {
             <Feather
               name="search"
               size={28}
-              color={focused ? "#007AFF" : "#4A4A4A"}
+              color={focused ? colors.primary : colors.textSecondary}
             />
           ),
         }}
@@ -67,7 +70,7 @@ export default function TabLayout() {
             <Feather
               name="more-horizontal"
               size={28}
-              color={focused ? "#007AFF" : "#4A4A4A"}
+              color={focused ? colors.primary : colors.textSecondary}
             />
           ),
         }}

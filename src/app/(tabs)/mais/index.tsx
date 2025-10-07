@@ -100,24 +100,24 @@ const getStyles = (colors) => StyleSheet.create({
     textAlign: 'center'
   },
   listContainer: {
-    paddingTop: 20,
+    paddingTop: normalize(20),
   },
   optionButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    paddingVertical: normalize(15),
+    paddingHorizontal: normalize(20),
     backgroundColor: colors.card,
-    borderBottomWidth: 1,
+    borderBottomWidth: normalize(1),
     borderBottomColor: colors.border,
   },
   optionIcon: {
-    marginRight: 15,
+    marginRight: normalize(15),
   },
   optionText: {
     flex: 1,
     fontFamily: 'SF-Pro-Display-Regular',
-    fontSize: 18,
+    fontSize: normalize(18),
     color: colors.text,
   },
 });

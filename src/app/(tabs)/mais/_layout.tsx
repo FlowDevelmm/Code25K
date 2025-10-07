@@ -9,6 +9,12 @@ export default function MaisLayout() {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="opcoes"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 }
